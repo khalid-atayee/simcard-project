@@ -1,0 +1,51 @@
+.header-content
+{
+    display: flex;
+    justify-content: space-around;
+    
+
+}
+.afghanistan-logo
+{
+    
+    height: 100px;
+
+
+    
+}
+
+.moi-logo
+{
+    width: 100px;
+   
+}
+.logo-img
+{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+
+}
+.content-text
+{
+    text-align: center;
+}
+ .button-container
+{
+    
+   margin-right: 30%;
+    border: 1px solid red;
+}
+/*
+.button
+{
+    background-color: #EFF0F5;
+    color: black;
+    padding: 7px 20px;
+    margin-right: 10px;
+    text-decoration: none;
+    font-weight: bolder;
+
+} */
+
+
