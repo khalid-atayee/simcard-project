@@ -57,6 +57,12 @@ Route::get('/submit-staff',[HomeController::class,'SearchSubmitForm'])->name('se
 Route::get('/info-employee/{id}',[HomeController::class,'infoDistribution'])->name('distribution-info');
 
 
+// print
+Route::get('/print/{id}',[HomeController::class,'print'])->name('print');
+
+
+
+
 
 
 

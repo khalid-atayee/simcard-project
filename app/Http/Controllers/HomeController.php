@@ -7,9 +7,20 @@ use App\Models\Distribution;
 use App\Models\Rank;
 use App\Models\Sim;
 use App\Models\Unit;
+use App\View\Components\PrintComponent;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+// use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\View;
+use PDF;
+// use Barryvdh\DomPDF\Fa;
+// use P
+
 
 
 class HomeController extends Controller
@@ -538,7 +549,23 @@ class HomeController extends Controller
       
 
     }
-    
+
+    function print_old($id)
+    {
+        $distributions = Distribution::with('units', 'ranks')->get()->find($id);
+        // dd($distributions);
+        $simcards = Sim::with('company')->where('distribution_id',$id)->get();
+        $printComponent = new PrintComponent($distributions, $simcards);
+        $printComponentView = $printComponent->resolveView()->render();
+        // $pdf = App::make('dompdf.wrapper');
+        // $pdf->loadHTML($printComponentView);
+        // dd("sdfss");
+        // return $pdf->stream();
+
+        // $pdf = PDF::loadView('pdf.invoice', $printComponentView);
+        // return $pdf->download('invoice.pdf');
+       
+    }
         
        
         
