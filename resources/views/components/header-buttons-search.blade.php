@@ -48,9 +48,9 @@
                 </a>
             </li>
             <li class="m-portlet__nav-item">
-                <button id="print-btn" class="m-portlet__nav-link btn btn-primary m-btn  m-btn--air">
+                <a href="{{ route('distribution-pdf') }}" class="m-portlet__nav-link btn btn-primary m-btn  m-btn--air">
                     چاپ
-                </button>
+                </a>
             </li>
 
          

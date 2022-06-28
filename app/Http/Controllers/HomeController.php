@@ -7,9 +7,16 @@ use App\Models\Distribution;
 use App\Models\Rank;
 use App\Models\Sim;
 use App\Models\Unit;
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
+// use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+// use Barryvdh\DomPDF\Facade\Pdf;
+// use Barryvdh\DomPDF\PDF;
+use Elibyy\TCPDF\Facades\TCPDF;
+use PDF;
+
 
 
 class HomeController extends Controller
@@ -532,12 +539,69 @@ class HomeController extends Controller
         // dd($distributions);
         $simcards = Sim::with('company')->where('distribution_id',$id)->get();
         // dd($simcards);
+
         
       
         return view('info_distribution.info_main',compact('distributions','simcards'));
       
 
     }
+    function pdfDistribution($id)
+    {
+        
+      
+            $distributions = Distribution::with('units', 'ranks')->get()->find($id);
+            // dd($distributions);
+            $simcards = Sim::with('company')->where('distribution_id',$id)->get();
+            $view = \View::make('info_distribution.pdf',['distributions' => $distributions,'simcards' => $simcards,]);
+            $html_content = $view->render();
+
+            // $lg = Array();
+            $lg['a_meta_charset'] = 'UTF-8';
+            $local = session()->get('local');
+            $lg['a_meta_dir'] = 'rtl';
+            $lg['a_meta_language'] = 'ps';
+            $lg['w_page'] = 'page';
+            PDF::SetAuthor('Nicola Asuni');
+            PDF::SetTitle('TCPDF Example 018');
+            PDF::SetSubject('TCPDF Tutorial');
+            PDF::SetKeywords('TCPDF, PDF, example, test, guide');
+            // set default header data
+            PDF::SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 018', PDF_HEADER_STRING);
+            // set header and footer fonts
+            PDF::setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+            PDF::setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+            // set default monospaced font
+            PDF::SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+            // set margins
+            PDF::SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, 20);
+            PDF::SetHeaderMargin(PDF_MARGIN_HEADER);
+            PDF::SetFooterMargin(PDF_MARGIN_FOOTER);
+            // set auto page breaks
+            PDF::SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+            // set image scale factor
+            PDF::setImageScale(PDF_IMAGE_SCALE_RATIO);
+            // set some language-dependent strings (optional)
+            PDF::setLanguageArray($lg);
+            // PDF::SetFont('dejavusans', '', 10);
+            PDF::SetFont(' freeserif', '', 10);
+
+           
+            // PDF::SetFont(' HOMA ', '', 14, '', true);
+            // PDF::SetFont('aefurat', '', 10);
+            PDF::SetTitle("لیست سیم کارت های توضیع شده");
+            PDF::AddPage();
+            //PDF::writeHTML($html_content, true, false, true, false, '');
+            PDF::WriteHTML($html_content, true, 0, true, 0);
+            // PDF::setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+            // userlist is the name of the PDF downloading
+            PDF::Output('khalid.pdf', 'D');
+            PDF::download('Khalid.pdf' ,);
+
+    }
+
+
     
         
        

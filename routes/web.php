@@ -55,6 +55,7 @@ Route::get('/submit-staff',[HomeController::class,'SearchSubmitForm'])->name('se
 // Route::get('/submit-staff',[HomeController::class,'SearchSubmitForm']);
 
 Route::get('/info-employee/{id}',[HomeController::class,'infoDistribution'])->name('distribution-info');
+Route::get('/pdf-employee/{id}',[HomeController::class,'pdfDistribution'])->name('distribution-pdf');
 
 
 
