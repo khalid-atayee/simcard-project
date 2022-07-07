@@ -18,3 +18,4 @@ class Sim extends Model
     }
     
 }
+

@@ -58,6 +58,37 @@ Route::get('/info-employee/{id}',[HomeController::class,'infoDistribution'])->na
 Route::get('/pdf-employee/{id}',[HomeController::class,'pdfDistribution'])->name('distribution-pdf');
 
 
+// modify ditribution
+Route::get('/distribution-edit/{id?}',[HomeController::class,'editDistribution'])->name('distribution.edit');
+Route::put('/distribution-update',[HomeController::class,'updateDistribution'])->name('distribution.update');
+
+// modify sim card of distributions
+
+Route::put('/simcard-edit',[HomeController::class,'simcardEdit'])->name('sim.edit');
+
+
+Route::post('/simcard-distribution',[HomeController::class,'simcardDistribution'])->name('sim.distribution');
+
+Route::get('/distribution-pdf-criminal/{id?}',[HomeController::class, 'criminalPdf'])->name('distribution-pdf.criminal');
+
+
+// report routes start here
+
+Route::get('/report-unit',[HomeController::class,'reportUnit'])->name('report.unit');
+
+Route::post('search-sim',[HomeController::class,'searchSim'])->name('searchSim.submit');
+Route::get('report-pdf/{id?}',[HomeController::class,'reportPdf'])->name('report.pdf');
+
+
+
+
+
+
+
+
+
+
+
 
 
 
