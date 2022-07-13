@@ -178,7 +178,7 @@
             </ul>
         </div>
     </div>
->>>>>>> new-main-branch
+
 
     <div id="print-this">
 
@@ -322,7 +322,7 @@
           </table>
     
     </div>
->>>>>>> new-main-branch
+
     </div>
    
 
