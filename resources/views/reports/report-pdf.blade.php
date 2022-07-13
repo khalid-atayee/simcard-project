@@ -95,10 +95,7 @@
                     <table class="table table-striped- table-bordered table-hover table-checkable dataTable no-footer dtr-inline">
                         
                         <thead>
-                            <tr>
-                            <th class="unit-name" scope="row"></th>
-        
-                            </tr>
+                            <h3>{{ $datas[0]->unit_name }}</h3>
                 
                           <tr>
                             <th scope="row">#</th>
