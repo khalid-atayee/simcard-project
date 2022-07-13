@@ -190,6 +190,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		
 		
 		@yield('script')
+		@include('adminLayouts.layoutss.custome_js');
 	</body>
 
 	<!-- end::Body -->

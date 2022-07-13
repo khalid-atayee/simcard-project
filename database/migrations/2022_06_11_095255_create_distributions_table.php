@@ -27,6 +27,7 @@ class CreateDistributionsTable extends Migration
             $table->string('phone');
             
             $table->string('description');
+        
 
             $table->string('user_id')->nullable();
             $table->timestamps();

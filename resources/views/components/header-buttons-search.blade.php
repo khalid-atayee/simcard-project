@@ -48,11 +48,11 @@
                 </a>
             </li>
             <li class="m-portlet__nav-item">
-                <a href="{{ route('print',49) }}"> 
-                <button id="print-btn" class="m-portlet__nav-link btn btn-primary m-btn  m-btn--air">
+
+                <a href="{{ route('distribution-pdf') }}" class="m-portlet__nav-link btn btn-primary m-btn  m-btn--air">
                     چاپ
-                </button>
-            </a>
+                </a>
+
             </li>
 
          

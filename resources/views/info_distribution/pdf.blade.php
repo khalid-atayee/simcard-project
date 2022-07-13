@@ -1,201 +1,185 @@
 
 
-<html lang="en">
+<html>
     <head>
-        <meta charset="utf-8" />
-		<title>Sim Card Management System | Dashboard</title>
-		<meta name="description" content="Latest updates and statistic charts">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-		<meta name="csrf-token" content="{{ csrf_token() }}">
+     
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+ .header-content
+{
+   
+    border: 1px solid rebeccapurple;
+  
+    
 
-		<!--begin::Web font -->
-		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
-		<script>
-			WebFont.load({
-            google: {"families":["Poppins:300,400,500,600,700","Roboto:300,400,500,600,700"]},
-            active: function() {
-                sessionStorage.fonts = true;
-            }
-          });
-        </script>
-		<link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-		<base href="/public">
+}
+.afghanistan-logo
+{
+    
+    height: 100px;
+    width: 100px;
+    border: 1px solid green;
+    width: fit-content;
 
-		<!--end::Web font -->
+    
+}
+.content-text
+{
+    width: 20%;
+    border: 1px solid red;
+    width: fit-content;
 
-		<!--begin::Global Theme Styles -->
-		{{-- <link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" /> --}}
+}
+.content-text h1 h2 h3 h4 
+{
+    font-size: 10px;
+}
 
-		{{-- RTL version: --}}
-		<link href="assets/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />
-		{{-- <link href="assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" /> --}}
+.logo-moi
+{
+    width: 100px;
+    height: 100px;
+    border: 1px solid red;
+    width: fit-content;
+   
+}
+.logo-img
+{
+    width: 400%;
+    height: 400%;
+    
+    
+    
+}
+.center
+{
+    text-align: center;
+   
 
-		{{-- RTL version: --}}
-		<link href="assets/demo/default/base/style.bundle.rtl.css" rel="stylesheet" type="text/css" />
 
-		<!--end::Global Theme Styles -->
+}
 
-		<!--begin::Page Vendors Styles -->
-		{{-- <link href="assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" /> --}}
 
-		{{-- RTL version: --}}
-		<link href="assets/vendors/custom/fullcalendar/fullcalendar.bundle.rtl.css" rel="stylesheet" type="text/css" />
+  
 
-		  {{-- bootstrap --}}
-        <!-- CSS only -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-        
 
-		<!--end::Page Vendors Styles -->
-		<link rel="shortcut icon" href="assets/demo/default/media/img/logo/favicon.ico" />
-		{{-- sweetalert --}}
-		{{-- <link rel="stylesheet" href="{{ asset('plugin/sweetAlert2/sweetalert2.min.css') }}"> --}}
-		{{-- <link rel="stylesheet" href="{{ asset('plugin/bahij-nassim/Bahij Nassim-Bold.ttf') }}">
-		<link rel="stylesheet" href="{{ asset('plugin/select2/css/select2.css') }}"> --}}
-		{{-- select2 --}}
-		{{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet"/> --}}
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
 
+</style>
     </head>
     <body class="font-sans antialiased w-full" >
+          {{-- <div class="header-content">
+            <div class="afghanistan-logo">
+                
+            </div>
+            <div class="content-text">
+                <img class="logo-img"  src="{{ public_path('loginImage/AfghanistanGovernmentLogo.jpeg') }}" alt="">
+
+                
+                    <h1>امارت اسلامی افغانستان</h1>
+                    <h2>وزارت امور داخله</h2>
+                    <h3>ریاست عمومی مخابره و تکنالوژی معلوماتی</h3>
+                    <h4>مدیریت عمومی ارتباطات</h4>
+
+                
+
+            </div>
+
+            <div class="moi-logo">
+                <img class="logo-img" src="{{ public_path('loginImage/7.jpg') }}" alt="">
+
+            </div>
+        </div> --}}
+
         <table class="table  table-striped- resposive-table" width="100%">
             <tbody>
                 <tr>
                     <td  class="center-img">
-                        <img class="w3-hover-opacity" class="center left" style="border-radius: 5px" src="">
+
+                        <img class="logo-img"  src="{{ public_path('loginImage/AfghanistanGovernmentLogo.jpeg') }}" alt="">
                     </td>
                     <td width="50%" class="center">
-                        <p style="text-align: center;">امارت اسلامی افغانستان</p>
-                        <p style="text-align: center;">وزارت امور داخله</p>
-                        <p style="text-align: center;">ریاست عمومی مخابره و تکنالوژی معلوماتی</p>
+                        <h1>امارت اسلامی افغانستان</h1>
+                        <h2>وزارت امور داخله</h2>
+                        <h3>ریاست عمومی مخابره و تکنالوژی معلوماتی</h3>
+                        <h4>مدیریت عمومی ارتباطات</h4>
                     </td>
                     <td></td>
                     <td  class="center-img">
-                        {{-- <img src="/sim_card/assets/images/MOI.jpeg" class="center left" align="center" alt=""> --}}
+                        <img class="logo-img" src="{{ public_path('loginImage/7.jpg') }}" alt="">
+
+
                     </td>
                 </tr>
             </tbody>
         </table>
-        <table>
-            <tr>
-                <td></td>
-            </tr>
-        </table>
-        {{-- <table class="table  table-bordered">
-            <tr class="bg-light">
-                <td  height="20" colspan="4"><p align="center">{{ __('main.empInfo')}}</p></td>
-            </tr>
-                <tbody style="width: auto;overflow-x: auto;white-space: nowrap;"> 
-                <tr>
-                    <td height="20" class="bg-light" width="20%">{{ __('main.name')}}</td>
-                    <td height="20">{{ $record[0]->name}}</td>
-                    <td height="20" class="bg-light" width="20%">{{ __('main.fname')}}</td>
-                    <td height="20">{{ $record[0]->father_name}}</td>
-                </tr>
-                <tr>
-                    <td height="20" class="bg-light" width="20%">{{ __('main.job')}}</td>
-                    <td height="20">{{ $record[0]->job}}</td>
-                    <td height="20" class="bg-light" width="20%">{{ __('main.rank')}}</td>
-                    <td height="20">{{ getDataFromStaticTable('rank','rank',$record[0]->rank)}}</td>
-                </tr>
-                <tr>
-                    <td height="20" class="bg-light" width="20%">{{ __('main.empUnit')}}</td>
-                    <td height="20">{{ getDataFromStaticTable('unit','unit_name',$record[0]->units)}}</td>
-                    <td height="20" class="bg-light" width="20%">{{ __('main.phoneNumber')}}</td>
-                    <td height="20">{{ $record[0]->phone_number}}</td>
-                </tr>
-                <tr>
-                    <td height="20" class="bg-light" width="20%">{{ __('main.id_card')}}</td>
-                    <td height="20">{{ $record[0]->id_card}}</td>
-                    <td height="20" class="bg-light" width="20%">{{ __('main.address')}}</td>
-                    <td height="20">{{ $record[0]->address}}</td>
-                </tr>
 
+      
+            
+               
+                
+                <br><br><br>
+        <table class="table custom-table" border="1px">
+            <thead>
                 <tr>
-                    <td height="20" class="bg-light" width="20%">{{ __('main.moreDetails')}}</td>
-                    <td height="20" colspan="3">{{ $record[0]->details_information}}</td>
-                </tr>
+                  
+                    <th scope="row">اسم</th>
+                    <th scope="row">اسم پدر</th>
+                    <th scope="row">وظیفه</th>
+                    <th scope="col">رتبه</th>
+                    <th scope="col">قطعه مربوطه</th>
+                    <th scope="col">شماره تماس</th>
+                    <th scope="col">آدرس</th>
+                    <th scope="col">شماره کارت هویت</th>
+                    <th scope="col">معلومات</th>
+                  </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ $distributions->name }}</td>
+                    <td>{{ $distributions->fatherName }}</td>
+                    <td>{{ $distributions->job }}</td>
+                    <td>{{ $distributions->ranks->name }}</td>
+                    <td>{{ $distributions->units->name }}</td>
+                    <td>{{ $distributions->phone }}</td>
+                    <td>{{ $distributions->address }}</td>
+                    <td>{{ $distributions->identity_id }}</td>
+                    <td>{{ $distributions->description }}</td>
+                  </tr>
             </tbody>
         </table>
-        <table>
-            <tr>
-                <td></td>
-            </tr>
-        </table>
-        <table class="table  table-bordered">
-            <tr class="bg-light">
-                <td height="20" colspan="4"><p align="center">{{ __('main.simList')}}</p></td>
-            </tr>
-                <tbody style="width: auto;overflow-x: auto;white-space: nowrap;"> 
-                <tr>
-                    <td height="20"   width="4%"><b>#</b></td>
-                    <td height="20"><b>{{ __('main.network')}}</b></td>
-                    <td height="20"><b>{{ __('main.number')}}</b></td>
-                    <td height="20"><b>{{ __('main.simdate')}}</b></td>
-                </tr>
-
-                    <?php  
-                    $subRecord =  GetSim('sim_info','parent_urn',$record[0]->urn);
-                    $i=1;
-                    foreach($subRecord as $sub)
-                    {?>
-                        
-                        <tr>
-                        <td height="20"  width="4%">{{$i}}</td>
-                        <td height="20">
-                            <?php 
-                                $rest = substr($sub->number, 0, -7);  // returns "abcde"
-                                //echo $rest;
-                                if($rest == "078")
-                                {
-                                    echo "اتصالات";
-                                }
-                                elseif($rest == "079" or $rest == "072")
-                                {
-                                    echo "روشن";
-                                }
-                                elseif($rest == "077" or $rest == "076")
-                                {
-                                    echo "ام تی ان";
-                                }
-                                elseif($rest == "070" or $rest == "071")
-                                {
-                                    echo "افغان بیسیم";
-                                }
-                            ?> 
-                        </td>
-                        <td height="20">{{$sub->number}}</td>
-                        <td height="20">
-                            <?php 
-                            $v = new Verta($sub->created_at);
-                            echo $v;
-                            ?>
-                        </td>
-                    </tr>
-                <?php $i++;}?>
+    
+        <table class="table" border="1px" style="padding: 5px">
+            <thead>
+                <h3 class="m-portlet__head-text">
+                    لیست سیم کارت های توضیح شده
+                </h3>
+              <tr>
+              
+                <th scope="row">#</th>
+                <th scope="row">شبکه</th>
+                <th scope="row">شماره</th>
+                <th scope="col">تاریخ</th>
+              
+              </tr>
+            </thead>
+            <tbody>
+                {{ $count=1 }}
+                @foreach ($simcards as $simcard )
+                 <tr>
+                   <td>{{ $count++ }}</td>
+                   <td>{{ $simcard->company->sim_type }}</td>
+                   <td>{{ $simcard->sim_number }}</td>
+                   <td>{{ $simcard->created_at }}</td>
+                   
+                 </tr>
+                @endforeach
             </tbody>
+            
         </table>
 
-        <table>
-            <tr>
-                <td></td>
-            </tr>
-        </table> --}}
-        <table class="table  table-bordered">
-           
-            <tr class="bg-light">
-                <td height="20" colspan="4"><p>{{ __('main.systemAdmin')}}</p></td>
-            </tr>
-                <tbody style="width: auto;overflow-x: auto;white-space: nowrap;"> 
-                    <tr>
-                        <td height="20"   width="30%">{{ __('main.name')}}: {{Auth::user()->name}}</td>
-                        <td height="20"> {{ __('main.dateTime')}}:   </td>
-                        <td height="20">{{ __('main.signatur')}}</td>
+        </div>
+       
+     
+</body>
 
-                        <td height="20">+79379079056 <b>Phone:</b> </td>
-                    </tr>
-              </tbody>
-        </table>
-
-    </body>
 </html>
