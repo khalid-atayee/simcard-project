@@ -4,11 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "content-hash": "9d1796f5deacaab5cd73a58a930ca9e4",
-=======
+
     "content-hash": "148fee89312569591811013545a7c32f",
->>>>>>> new-main-branch
+
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2527,8 +2525,7 @@
             "time": "2022-01-27T09:35:39+00:00"
         },
         {
-<<<<<<< HEAD
-=======
+
             "name": "paragonie/random_compat",
             "version": "v9.99.100",
             "source": {
@@ -2579,7 +2576,7 @@
             "time": "2020-10-15T08:29:30+00:00"
         },
         {
->>>>>>> new-main-branch
+
             "name": "phenx/php-font-lib",
             "version": "0.5.4",
             "source": {
@@ -2670,8 +2667,7 @@
             "time": "2022-03-07T12:52:04+00:00"
         },
         {
-<<<<<<< HEAD
-=======
+
             "name": "php-http/message-factory",
             "version": "v1.0.2",
             "source": {
@@ -2726,7 +2722,7 @@
             "time": "2015-12-19T14:08:53+00:00"
         },
         {
->>>>>>> new-main-branch
+
             "name": "phpoption/phpoption",
             "version": "1.8.1",
             "source": {
@@ -3507,51 +3503,7 @@
             "time": "2021-12-11T13:40:54+00:00"
         },
         {
-<<<<<<< HEAD
-            "name": "spatie/laravel-permission",
-            "version": "5.5.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "f2303a70be60919811ca8afc313e8244fda00974"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/f2303a70be60919811ca8afc313e8244fda00974",
-                "reference": "f2303a70be60919811ca8afc313e8244fda00974",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/auth": "^7.0|^8.0|^9.0",
-                "illuminate/container": "^7.0|^8.0|^9.0",
-                "illuminate/contracts": "^7.0|^8.0|^9.0",
-                "illuminate/database": "^7.0|^8.0|^9.0",
-                "php": "^7.3|^8.0|^8.1"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^5.0|^6.0|^7.0",
-                "phpunit/phpunit": "^9.4",
-                "predis/predis": "^1.1"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Spatie\\Permission\\PermissionServiceProvider"
-                    ]
-                },
-                "branch-alias": {
-                    "dev-main": "5.x-dev",
-                    "dev-master": "5.x-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/helpers.php"
-                ],
-                "psr-4": {
-                    "Spatie\\Permission\\": "src"
-=======
+
             "name": "setasign/fpdi",
             "version": "v2.3.6",
             "source": {
@@ -3586,7 +3538,7 @@
             "autoload": {
                 "psr-4": {
                     "setasign\\Fpdi\\": "src/"
->>>>>>> new-main-branch
+
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3595,37 +3547,7 @@
             ],
             "authors": [
                 {
-<<<<<<< HEAD
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Permission handling for Laravel 6.0 and up",
-            "homepage": "https://github.com/spatie/laravel-permission",
-            "keywords": [
-                "acl",
-                "laravel",
-                "permission",
-                "permissions",
-                "rbac",
-                "roles",
-                "security",
-                "spatie"
-            ],
-            "support": {
-                "issues": "https://github.com/spatie/laravel-permission/issues",
-                "source": "https://github.com/spatie/laravel-permission/tree/5.5.5"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/spatie",
-                    "type": "github"
-                }
-            ],
-            "time": "2022-06-29T23:11:42+00:00"
-=======
+
                     "name": "Jan Slabon",
                     "email": "jan.slabon@setasign.com",
                     "homepage": "https://www.setasign.com"
@@ -3654,7 +3576,7 @@
                 }
             ],
             "time": "2021-02-11T11:37:01+00:00"
->>>>>>> new-main-branch
+ 
         },
         {
             "name": "swiftmailer/swiftmailer",
