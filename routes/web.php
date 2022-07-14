@@ -78,6 +78,13 @@ Route::get('/report-unit',[HomeController::class,'reportUnit'])->name('report.un
 
 Route::post('search-sim',[HomeController::class,'searchSim'])->name('searchSim.submit');
 Route::get('report-pdf/{id?}',[HomeController::class,'reportPdf'])->name('report.pdf');
+Route::get('/report-excel',[HomeController::class,'export'])->name('data.excel');
+// Route::get('/report-excel',[HomeController::class,'']);
+
+
+
+
+
 
 
 

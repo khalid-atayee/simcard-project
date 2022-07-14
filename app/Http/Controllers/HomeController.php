@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\DB;
 use Elibyy\TCPDF\Facades\TCPDF;
 use Illuminate\View\ViewName;
 use PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UsersExport;
 
 
 
@@ -1061,6 +1063,11 @@ class HomeController extends Controller
 
 
 
+    }
+
+    function  export()
+    {
+        return Excel::download(new UsersExport, 'user.xlsx');
     }
     
     // dd($request->unitselect);

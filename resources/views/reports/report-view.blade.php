@@ -10,9 +10,9 @@
       
      
       <div class="btn-group">
-          <button type="button" class="btn btn-primary  m-btn m-btn--icon m-btn--wide m-btn--md">
+          <a href="{{ route('data.excel') }}" class="btn btn-primary  m-btn m-btn--icon m-btn--wide m-btn--md">
               انتقال به اکسل
-          </button>
+          </a>
           <a href="{{ route('report.pdf',$datas[0]->unit_id) }}" id="print-btn"  class="btn btn-success  mx-2 m-btn m-btn--md" >
               چاپ
           </a >
