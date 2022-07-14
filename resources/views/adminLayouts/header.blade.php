@@ -519,7 +519,15 @@
 													<li class="m-nav__separator m-nav__separator--fit">
 													</li>
 													<li class="m-nav__item">
-														<a href="{{ url('/') }}" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">Logout</a>
+														<a class="m-nav__link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+															<i class="m-nav__link-icon fa flaticon-logout"></i>
+															<span class="m-nav__link-title">
+																<span class="m-nav__link-wrap">
+																	<span class="m-menu__link-text-custom">{{ trans('home.logout') }}</span>
+																</span>
+															</span>
+														</a>
+														<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
 													</li>
 												</ul>
 											</div>

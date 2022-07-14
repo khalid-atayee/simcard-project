@@ -1035,8 +1035,8 @@ class HomeController extends Controller
         $pdf::setImageScale(PDF_IMAGE_SCALE_RATIO);
         // set some language-dependent strings (optional)
         $pdf::setLanguageArray($lg);
-        PDF::SetFont('dejavusans', '', 10);
-        // $pdf::SetFont(' freeserif', '', 10);
+        // PDF::SetFont('dejavusans', '', 10);
+        $pdf::SetFont(' freeserif', '', 10);
 
        
         // PDF::SetFont(' HOMA ', '', 14, '', true);
