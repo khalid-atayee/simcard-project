@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\RollController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -92,6 +94,37 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/report-excel',[HomeController::class,'export'])->name('data.excel');
 // Route::get('/report-excel',[HomeController::class,'']);
 
+
+// Role  start here
+
+        Route::get('/role',[RollController::class,'index'])->name('role.index');
+        Route::get('/getData',[RollController::class,'getData'])->name('role.getData');
+        Route::post('/role_create',[RollController::class,'create'])->name('role.create');
+        Route::delete('/role_delete/{id?}',[RollController::class,'delete'])->name('role.delete');
+        Route::get('/role_create/{id?}',[RollController::class,'update'])->name('role.update');
+
+
+
+//  Role routes end here
+
+// Permission start here
+
+        Route::get('/permission',[PermissionController::class,'permissionIndex'])->name('permission.index');
+        Route::get('/permission_getData',[PermissionController::class,'retrieve'])->name('permission.retrieve');
+        Route::post('/permission_create',[PermissionController::class,'create'])->name('permission.create');
+        Route::delete('/permission_delete/{id?}',[PermissionController::class,'delete'])->name('permission.delete');
+        Route::get('/permission_update/{id?}',[PermissionController::class,'update'])->name('permission.update');
+
+
+        
+
+
+
+        
+
+
+
+// Permission end here
 
 
 });

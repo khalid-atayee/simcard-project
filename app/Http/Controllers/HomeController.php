@@ -8,16 +8,11 @@ use App\Models\Rank;
 use App\Models\Sim;
 use App\Models\Unit;
 
-// use Barryvdh\DomPDF\PDF as DomPDFPDF;
-// use Barryvdh\DomPDF\PDF as DomPDFPDF;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
-// use Barryvdh\DomPDF\Facade\Pdf;
-
-// use Barryvdh\DomPDF\PDF;
 use Elibyy\TCPDF\Facades\TCPDF;
 use Illuminate\View\ViewName;
 use PDF;
@@ -26,6 +21,10 @@ use App\Exports\UsersExport;
 
 
 
+// use Barryvdh\DomPDF\Facade\Pdf;
+// use Barryvdh\DomPDF\PDF;
+// use Barryvdh\DomPDF\PDF as DomPDFPDF;
+// use Barryvdh\DomPDF\PDF as DomPDFPDF;
 
 class HomeController extends Controller
 {
@@ -1039,37 +1038,49 @@ class HomeController extends Controller
         $pdf::SetFont(' freeserif', '', 10);
 
        
-        // PDF::SetFont(' HOMA ', '', 14, '', true);
-        // PDF::SetFont('aefurat', '', 10);
         $pdf::SetTitle("لیست سیم کارت های توضیع شده");
         $pdf::AddPage();
-        //PDF::writeHTML($html_content, true, false, true, false, '');
         $pdf::WriteHTML($html_content, true, 0, true, 0);
-        // PDF::setImageScale(PDF_IMAGE_SCALE_RATIO);
-
-        // userlist is the name of the PDF downloading
         $pdf::Output('simcards.pdf','D');
         $pdf::download('simcards.pdf');
-        // $pdf::setImageScale(PDF_IMAGE_SCALE_RATIO);
-        // set some language-dependent strings (optional)
-        // $pdf::setLanguageArray($lg);
-        // // PDF::SetFont('dejavusans', '', 10);
-        // $pdf::SetFont(' freeserif', '', 10);
-        // $pdf::SetTitle("لیست سیم کارت های توضیع شده");
-        // $pdf::AddPage();
-        // $pdf::WriteHtml($view, true, 0,true,0);
-        // $pdf::Output('khalid.pdf','D');
-        // $pdf::download('khalid.pdf');
-
-
-
+        
+        
+        
     }
-
+    
     function  export()
     {
         return Excel::download(new UsersExport, 'user.xlsx');
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // PDF::setImageScale(PDF_IMAGE_SCALE_RATIO);
+    //PDF::writeHTML($html_content, true, false, true, false, '');
+    // PDF::SetFont(' HOMA ', '', 14, '', true);
+    // PDF::SetFont('aefurat', '', 10);
+
+    // userlist is the name of the PDF downloading
+    
+    
+    // $pdf::setImageScale(PDF_IMAGE_SCALE_RATIO);
+    // set some language-dependent strings (optional)
+    // $pdf::setLanguageArray($lg);
+    // // PDF::SetFont('dejavusans', '', 10);
+    // $pdf::SetFont(' freeserif', '', 10);
+    // $pdf::SetTitle("لیست سیم کارت های توضیع شده");
+    // $pdf::AddPage();
+    // $pdf::WriteHtml($view, true, 0,true,0);
+    // $pdf::Output('khalid.pdf','D');
+    // $pdf::download('khalid.pdf');
     // dd($request->unitselect);
     // dd($datas);
     
