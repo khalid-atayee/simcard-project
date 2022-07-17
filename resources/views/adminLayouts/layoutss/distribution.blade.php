@@ -368,7 +368,7 @@
                     $.each(response.errors, function (key, singleError) { 
                     $('.error-'+key).html(singleError)
                         if(key == 'newPhoneNo.0'){
-                    $('.error-newPhoneNo').html(singleError);
+                           $('.error-newPhoneNo').html(singleError);
 
                         }
                     });

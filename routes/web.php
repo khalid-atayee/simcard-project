@@ -103,6 +103,17 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/role_delete/{id?}',[RollController::class,'delete'])->name('role.delete');
         Route::get('/role_create/{id?}',[RollController::class,'update'])->name('role.update');
 
+        // Role assign permission routes
+        Route::get('/role_assignPermission/{id?}',[RollController::class,'assignPermission'])->name('role.assignPermission');
+        Route::post('/role_givePermission',[RollController::class,'givePermission'])->name('role.givePermission');
+        Route::get('/role_givePermission/{id?}',[RollController::class,'getPermissions'])->name('role.getRolePermissions');
+
+        
+
+
+        
+        
+
 
 
 //  Role routes end here

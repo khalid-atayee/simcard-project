@@ -88,7 +88,7 @@
                                 + count++ + 
                                 '</td><td>'
                                 +item.name+
-                                '</td><td><button type="button" value="'+item.id+'" id="deleteBtn" class="btn btn-primary  m-btn--md m--margin-right-10">حذف</button></td>'+
+                                '</td><td><button type="button" value="'+item.id+'" id="deleteBtn" class="btn btn-danger  m-btn--md m--margin-right-10">حذف</button></td>'+
                                 '<td><button  type="button" value="'+item.id+'"  id="updateBtn" class="btn btn-primary  m-btn--md m--margin-right-10">ویرایش</button> </td></tr>'
                                     // console.log(item.name)
     

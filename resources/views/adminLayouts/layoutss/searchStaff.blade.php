@@ -157,25 +157,22 @@ $(document).on('submit','#formsubmit', function (e) {
         dataType: "json",
         
         success: function (response) {
-         $('tbody').html('');
-        $('tbody').append(response.data);
-        $("#formsubmit").trigger("reset");
-        $('.selectUnit').select2({
-        placeholder:'انتخاب نماید',
-        dir: 'rtl'
+            $('tbody').html('');
+            $('tbody').append(response.data);
+            $("#formsubmit").trigger("reset");
+            $('.selectUnit').select2({
+                placeholder:'انتخاب نماید',
+                dir: 'rtl'  
 
-    });
+             });
 
-    $('.selectRank').select2({
-        placeholder:'انتخاب نماید',
-        dir: 'rtl'
+            $('.selectRank').select2({
+                placeholder:'انتخاب نماید',
+                dir: 'rtl'
 
-    });
+            });
 
-            
-          
-
-
+       
         }
     });
     // $( '#formsubmit' ).each(function(){

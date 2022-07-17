@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RollController extends Controller
@@ -91,6 +92,44 @@ class RollController extends Controller
             'status'=>200,
             'roles'=>$roles
         ]);
+    }
+
+    function assignPermission($id)
+    {
+        $permissions = Permission::all();
+        $role = Role::find($id);
+        return view('roles.assignPermissionView',compact('permissions','role'));
+
+    }
+
+    function givePermission(Request $request)
+    {
+        $role_id = $request->role_id;
+        // dd($role_id);
+        $permission_name = $request->permission_name;
+        // dd($permission_name);
+
+        $role = Role::find($role_id);
+
+        if($role->hasPermissionTo($permission_name))
+        {
+            return response()->json(['message'=>'صلاحیت در رول موجود است']);
+
+        }
+        $role->givePermissionTo($permission_name);
+        return response()->json(['message'=>'صلاحیت اضافه گردید']); 
+        
+
+
+    }
+
+    function getPermissions($id)
+    {
+        $role = Role::find($id);
+
+
+       $roles= $role->permissions;
+        return response()->json(['role_permissions'=>$roles]);
     }
 
     
