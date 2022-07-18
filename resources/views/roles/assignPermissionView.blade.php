@@ -1,8 +1,7 @@
 <table class="table table-striped- table-bordered table-hover table-checkable dataTable no-footer dtr-inline">
 
-    {{-- <div class="form-group form-row "> --}}
         <div class="form-group m-form__group form-row">
-            <form action="" id="assign-permission">
+            <form  id="assign-permission">
                 @csrf
 
                 <div class="col-lg-4">
@@ -23,7 +22,7 @@
                 </div>
 
                 <div class="col-lg-4">
-                    <input type="submit" id="submit-btn" style="margin-top: 25px" class="form-control btn btn-outline-success btn-block" value="ایجاد صلاحیت">
+                    <input type="button" id="assignPermission-btn" style="margin-top: 25px" class="form-control btn btn-outline-success btn-block" value="ایجاد صلاحیت">
                  
                 </div>
             </form>
@@ -45,36 +44,11 @@
 
     </thead>
     <tbody id="tbody-role-permission">
-        {{-- @if ($role->permissions)
-        @foreach ($role->permissions as $role_permissions)
-        <tr>
-            <td>{{ $loop->index+1 }}</td>
-             <td>{{ $role_permissions->name }}</td>
-             <td><input type="submit" id="submit-btn"class=" btn btn-outline-danger" value="حذف صلاحیت"></td>
-
-
-        </tr>
-            
-        @endforeach
-            
-        @endif --}}
-        
-        
+    
      </tbody>
     </table>
   
 
-
-    {{-- @section('script')
-    <script>
-        $('#selectUnit').select2({
-            placeholder:'انتخاب نماید',
-            dir: 'rtl'
-
-        });
-    </script>
-        
-    @endsection --}}
 
     
 

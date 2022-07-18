@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RollController;
+use App\Http\Controllers\Admin\userController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -107,14 +108,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/role_assignPermission/{id?}',[RollController::class,'assignPermission'])->name('role.assignPermission');
         Route::post('/role_givePermission',[RollController::class,'givePermission'])->name('role.givePermission');
         Route::get('/role_givePermission/{id?}',[RollController::class,'getPermissions'])->name('role.getRolePermissions');
-
+        Route::delete('/role_revokePermission',[RollController::class,'revokePermission'])->name('role.revokePermission');
         
-
-
-        
-        
-
-
 
 //  Role routes end here
 
@@ -127,15 +122,18 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/permission_update/{id?}',[PermissionController::class,'update'])->name('permission.update');
 
 
-        
-
-
-
-        
-
-
-
 // Permission end here
+
+// User routes start here
+
+
+// user.index
+        Route::get('/users',[userController::class,'userIndex'])->name('user.index');
+        Route::get('/retrieve',[userController::class,'retrieve'])->name('user.retrieve');
+        Route::get('/getUserFrom',[userController::class,'userform'])->name('users.inputFields');
+
+
+// User routes end here
 
 
 });

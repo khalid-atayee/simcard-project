@@ -75,6 +75,7 @@
 @section('script')
 
 <script>
+    
     $(document).ready(function () {
         getData();
         function getData()
@@ -89,7 +90,7 @@
                         if(response.status==200)
                         {
                             $('tbody').html('');
-                           $.each(response.roles, function (key, value) { 
+                            $.each(response.roles, function (key, value) { 
                                 $('tbody').append
                                 (
                                     '<tr><td>'
@@ -202,17 +203,19 @@
             $.ajax({
                 type: "get",
                 url: "{{ route('role.assignPermission') }}/"+info_id,
+                // $('#concat').html('');
                 success: function (response) {
                     $('#main-table').hide();
                     $('#form-role').hide();
 
                     $('#concat').append(response);
+                    getRolePermissions();
                     
                 }
             });
             
         });
-        getRolePermissions();
+        
         function getRolePermissions()
         {
             var role_id = $('#role_hidden_id').val();
@@ -220,28 +223,16 @@
                 type: "get",
                 url: "{{ route('role.getRolePermissions') }}/"+role_id,
                 success: function (response) {
-                    $.each(response.role_permissions, function (key, value) { 
-                        $('#tbody-role-permission').append
-                                (
-                                    '<tr><td>'
-                                    + count++ + 
-                                    '</td><td>'
-                                    +value.name+
-                                    '</td><td><button type="button" value="'+value.id+'" id="deleteBtn" class="btn btn-danger  m-btn--md m--margin-right-10">حذف</button></td>'+
-                                    '<td><button  type="button" value="'+value.id+'"  id="updateBtn" class="btn btn-primary  m-btn--md m--margin-right-10">ویرایش</button> </td>'+
-                                    '<td><button  type="button" value="'+value.id+'"  id="infoBtn" class="btn btn-info  m-btn--md m--margin-right-10">معلومات</button> </td></tr>'
 
-                                );
-
-                         
-                    });
+                    $('#tbody-role-permission').html('');
                     
+                    $('#tbody-role-permission').append(response);
+
                 }
             });
         }
 
-        getRolePermissions();
-        $(document).on('click' ,'#submit-btn', function () {
+        $(document).on('click' ,'#assignPermission-btn', function () {
             
             var data = {
                 'role_id': $('#role_hidden_id').val(),
@@ -254,28 +245,58 @@
                 data: data,
                 dataType: "json",
                 success: function (response) {
+                   
                     $('#permission_select').val('');
+
                     Swal.fire(
                         'success added',
                         response.message,
                         'success'
                       );
-                      
+                      getRolePermissions();
                     
                 }
             });
             
         });
 
+        $(document).on('click','#deletePermission-btn', function () {
+
+          
+            // console.log(permission_id,role_id);
+            var role_id = $(this).val();
+            var permission_id = $(this).attr('name');
+
+            var data = {
+                permission_id :permission_id,
+                role_id : role_id,
+            }
+            $.ajax({
+                type: "delete",
+                url: "{{ route('role.revokePermission') }}",
+                data: data,
+                dataType: "json",
+                success: function (response) {
+                    if(response.status==200)
+                    {
+                      getRolePermissions();
+                      Swal.fire(
+                        'success added',
+                        response.message,
+                        'success'
+                      );
 
 
-            // $('#permission_select').select2({
-            // placeholder:'انتخاب نماید',
-            // dir: 'rtl'
-      
-  
+                    }
+                                
+                }
+            });
+            
+        });
 
-       
+        
+
+
         
     });
 </script>

@@ -125,11 +125,26 @@ class RollController extends Controller
 
     function getPermissions($id)
     {
+        $permissions = Permission::all();
         $role = Role::find($id);
 
 
-       $roles= $role->permissions;
-        return response()->json(['role_permissions'=>$roles]);
+        return view('roles.roleHasPermission',compact('permissions','role'));
+
+    }
+
+    function revokePermission(Request $request)
+    {
+        $role_id = $request->role_id;
+        $permission_id = $request->permission_id;
+
+        // dd($role_id,$permission_id);
+
+        $role = Role::find($role_id);
+        $permission = Permission::find($permission_id);
+        $role->revokePermissionTo($permission);
+        return response()->json(['status'=>200,'message'=>'رکارد موفقانه حذف گردید']);
+
     }
 
     
