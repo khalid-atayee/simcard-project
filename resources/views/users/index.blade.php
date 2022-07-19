@@ -108,6 +108,38 @@
             });
             
         });
+
+
+        $(document).on('submit','#userForm', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('user.submitForm') }}",
+                data: new FormData(this),
+                dataType:'JSON',
+                contentType:false,
+                cache: false,
+                processData: false,
+                success: function (response) {
+                    // $('.error').text('');
+                    // if(response.status==400)
+                    // {
+                    //     $.each(response.errors, function (key, value) { 
+                    //          $('#error-'+key).text(value);
+                    //     });
+                    // }
+                    // else
+                    // {
+                        // $('.fordeve').hide();
+                        $('.m-container').show();
+                        $('tbody').append(response);
+                    // }
+                    
+                // }
+                    }
+            });
+            
+        });
             
     });
 

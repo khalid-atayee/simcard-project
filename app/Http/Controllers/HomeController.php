@@ -933,7 +933,9 @@ class HomeController extends Controller
 
     function searchSim(Request $request)
     {
-
+        // $unitsWithSimType = Unit::with(['simcards' => function($query){
+        //     $query->groupBy('company_id');
+        // }])->get();
         $unit_id = $request->unitselect;
         $datas = DB::table('sims')
         ->join('distributions','distributions.id', '=', 'sims.distribution_id')

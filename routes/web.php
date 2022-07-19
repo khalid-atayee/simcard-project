@@ -131,6 +131,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/users',[userController::class,'userIndex'])->name('user.index');
         Route::get('/retrieve',[userController::class,'retrieve'])->name('user.retrieve');
         Route::get('/getUserFrom',[userController::class,'userform'])->name('users.inputFields');
+        Route::post('/userSubmit',[userController::class,'formSubmit'])->name('user.submitForm');
+
+        
 
 
 // User routes end here
