@@ -132,6 +132,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/retrieve',[userController::class,'retrieve'])->name('user.retrieve');
         Route::get('/getUserFrom',[userController::class,'userform'])->name('users.inputFields');
         Route::post('/userSubmit',[userController::class,'formSubmit'])->name('user.submitForm');
+        Route::delete('/userDelete',[userController::class,'userDelete'])->name('user.delete');
 
         
 

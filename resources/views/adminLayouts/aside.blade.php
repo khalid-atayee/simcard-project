@@ -143,6 +143,7 @@
 							   </div>
 						   </li> --}}
 						   <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('user.index') }}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">مدیریت یوزر ها</span></a></li>
+						   
 
 						   <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('role.index') }}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">رول ها</span></a></li>
 

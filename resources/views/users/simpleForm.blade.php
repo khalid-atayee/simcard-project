@@ -9,7 +9,6 @@
 </tr>
     
 @endforeach --}}
-<div class="fordeve">
 
 <form id="userForm" method="POST" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" enctype="multipart/form-data">
     {{ csrf_field() }}
@@ -83,7 +82,6 @@
         </div>
     </div>
 </form>
-</div>
 
 
 

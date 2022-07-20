@@ -13,7 +13,8 @@ class userController extends Controller
 
     function userIndex()
     {
-        return view('users.index');
+        $users = User::all();
+        return view('users.index',compact('users'));
     }
 
     function retrieve()
@@ -42,7 +43,7 @@ class userController extends Controller
         // echo $request->file('logo');exit;
             $validator = Validator::make($request->all(),[
             'name'=>'required',
-            'email'=>'required',
+            'email'=>'required|unique:users,email',
             'password'=>'required',
             'cpassword'=>'required|same:password',
             'phone'=>'required|regex:/^(07)[0-9]{8}$/',
@@ -52,6 +53,8 @@ class userController extends Controller
             'name.required'=>'اسم ضروری میباشد',
             'name.string'=>'اسم باید به حروف باشد',
             'email.required'=>'ایمیل ضروری میباشد',
+            // 'email.email'=>' ایمیل را به فارمت درست بنویسید',
+            'email.unique'=>'ایمیل باید تکرار نباشد',
             'password.required'=>'رمز ورودی ضروری میباشد',
             'cpassword.required'=>'تاییدی رمز ورودی ضروری میباشد',
             'cpassword.same'=>'رمز ورودی و تاییدی رمز یکسان نمی باشد',
@@ -62,10 +65,7 @@ class userController extends Controller
         
         if($validator->fails())
         {
-            return response()->json([
-                'status'=>400,
-                'errors'=>$validator->errors()
-            ]);
+            return response()->json(['errors'=>$validator->errors()],400);
         }
     
     
@@ -88,17 +88,38 @@ class userController extends Controller
                    
                 }
                 $user->save();
-                // $users= User::all();
-                // return view('users.showuser',compact('users'));
-                return response()->json(['status'=>200, 'message'=>'یوزر موفقانه ایجاد گردید']);
+                $users = User::all();
+                $html = view('users.data',compact('users'))->render();
+                return response()->json(['status'=>true, 'html'=>$html,'message'=>'رکارد موفقانه اضافه گردید'],200);
+
                 
             
-       }
+            }
             
             
             
             
-               
+            
+        }
+
+
+        function userDelete(Request $request)
+        {
+            // dd($request->user_id);
+            
+            $user_id = $request->user_id;
+            $user = User::find($user_id);
+            if($user->hasRole('admin')){
+                return response()->json(['status'=>401,'errors'=>'رول شما ادمین است'],401);
+            }
+            else
+            {
+                $user->delete();
+                $users = User::all();
+                $html_content = view('users.data',compact('users'))->render();
+
+                return response()->json(['message'=>'یوزر موفقانه حذف گردید','html_content'=>$html_content],200);
+            }
         }
         
         
@@ -106,3 +127,9 @@ class userController extends Controller
     
     // |regex:/^([a-zA-Z]+)(\s[a-zA-Z]+)*$/',
     // 'name.regex'=>'اسم شما باید به حروف باشد',
+    // $view= view('users.file');
+    // return response()->view('users.file');
+    // return response()->json(['html'=>$view],200);
+    // $html_content=view('users.index')->render();
+    // return response()->json(['html_content'=>$html_content],200);
+    // return response()->json(array('success'=>true, 'html_content'=>$html_content));
