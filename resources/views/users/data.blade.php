@@ -32,11 +32,11 @@
                             <td>{{ $loop->index+1 }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td><button type="button" value="{{ $user->id }}" id="userRole" class="btn btn-success  m-btn m-btn--icon m-btn--wide">رول</button></td>
+                            <td><button type="button" onclick="assignRoleToUser('{{ route('user.assignRoleToUser',$user->id) }}','get')" id="userRole" class="btn btn-success  m-btn m-btn--icon m-btn--wide">رول</button></td>
                             <td><button  type="button" value="{{ $user->id }}"  id="userPermission" class="btn btn-primary  m-btn m-btn--icon m-btn--wide">صلاحیت</button></td>
 
                             <td>
-                                <button  type="button" onclick="deleteUser('{{ route('user.delete') }}','delete','{{ $user->id }}')"  id="userDelete" class="btn btn-danger m-btn m-btn--icon m-btn--wide">حذف</button>
+                                <button  type="button" onclick="deleteUser('{{ route('user.delete',$user->id) }}','delete')"  id="userDelete" class="btn btn-danger m-btn m-btn--icon m-btn--wide">حذف</button>
 
                             </td>
                         </tr>

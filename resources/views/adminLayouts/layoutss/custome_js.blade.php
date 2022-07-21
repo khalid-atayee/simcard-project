@@ -27,19 +27,19 @@ function testWork(url,params,method,div)
 }
 
 
-function deleteUser(url,method,data)
+function deleteUser(url,method)
 {
     // var data  = $('#userDelete').val();
 
-    var userId = {
-        'user_id':data
-    }
+    // var userId = {
+    //     'user_id':data
+    // }
 
     // console.log(userId);
     $.ajax({
         type: method,
         url: url,
-        data:userId,
+     
         success: function (response) {
             $('.main-container').html(response.html_content);
             Swal.fire(
@@ -70,4 +70,41 @@ function deleteUser(url,method,data)
         }
     });
 }
+
+
+function assignRoleToUser(url,method)
+{
+    $.ajax({
+        type: method,
+        url: url,
+        success: function (response) {
+
+            $('.main-container').html(response);
+            
+        }
+    });
+}
+
+function userRoleForm(url,params,method)
+{
+    // $('#assign-role').submit(function (e){
+    //     e.preventDefault();
+    // });
+    // console.log('ok');
+
+    $.ajax({
+        type: method,
+        url: url,
+        data: params,
+        // dataType: "dataType",
+        success: function (response) {
+            
+        }
+    });
+
+}
+
+// $('#assign-role').
+
+
 </script>

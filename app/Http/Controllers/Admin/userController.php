@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
 
 class userController extends Controller
 {
@@ -63,11 +64,11 @@ class userController extends Controller
             
         ]);
         
-        if($validator->fails())
+
+            if($validator->fails())
         {
             return response()->json(['errors'=>$validator->errors()],400);
         }
-    
     
        else 
        {
@@ -103,23 +104,50 @@ class userController extends Controller
         }
 
 
-        function userDelete(Request $request)
+        function userDelete($id=0)
         {
+            // dd($id);
+            // dd(public_path().'/userImage');
             // dd($request->user_id);
             
-            $user_id = $request->user_id;
-            $user = User::find($user_id);
+            // $user_id = $request->user_id;
+            $user = User::find($id);
             if($user->hasRole('admin')){
                 return response()->json(['status'=>401,'errors'=>'رول شما ادمین است'],401);
             }
             else
             {
-                $user->delete();
+                $user_image  = $user->image;
+                $path = public_path().'/userImage/'.$user_image;
+                if(file_exists($path))
+                {
+                    unlink($path);
+                    $user->delete();
+
+                }
+                else
+                {
+                    $user->delete();
+                }
                 $users = User::all();
                 $html_content = view('users.data',compact('users'))->render();
 
                 return response()->json(['message'=>'یوزر موفقانه حذف گردید','html_content'=>$html_content],200);
             }
+        }
+
+        function assignRoleTo($id)
+        {
+            $user =User::find($id);
+            $roles = Role::all();
+            return view('users.userRole',compact('user','roles'));
+        }
+
+        function userRoleForm(Request $request)
+        {
+            echo '<pre>';print_r($_POST);
+            exit;
+
         }
         
         
