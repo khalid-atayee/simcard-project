@@ -6,7 +6,7 @@
             <form id="form-role" class="form-group m-form__group form-row mx-3">
                 @csrf
                 <div class="col-lg-3">
-                    <label for="exampleInputEmail1">اسم یوزر</label>
+                    <label for="exampleInputEmail1">اسم رول</label>
                     <input type="text" class="form-control m-input m-input--square" name="rolename" id="rolename"
                         aria-describedby="emailHelp">
                     <div id="error-role" class="text-danger"></div>

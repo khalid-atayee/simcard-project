@@ -134,7 +134,23 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/userSubmit',[userController::class,'formSubmit'])->name('user.submitForm');
         Route::delete('/userDelete/{id?}',[userController::class,'userDelete'])->name('user.delete');
         Route::get('/assignRoleToUser/{id?}',[userController::class,'assignRoleTo'])->name('user.assignRoleToUser');
-        Route::post('/userAssignRole',[userController::class,'userRoleForm'])->name('user.roleAssignForm');
+        Route::post('/userAssignRole/{id?}',[userController::class,'userRoleForm'])->name('user.roleAssignForm');
+        Route::delete('/userRevokeuser',[userController::class,'userRevokeRole'])->name('user.revokeRole');
+        Route::get('/userAssignPermissionToUser/{id?}',[userController::class,'userAssignPermission'])->name('user.assignPermissionToUser');
+        Route::post('/usergivePermissionTo/{id?}',[userController::class, 'givePermissionToUser'])->name('user.givePermissionTo');
+        Route::delete('/revokePermission',[userController::class,'revokePermission'])->name('user.revokePermission');
+        Route::get('/backToMain',[userController::class,'backToMain'])->name('user.backToUser');
+
+
+        
+        
+
+
+        
+
+
+        
+
 
         
 

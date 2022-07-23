@@ -23,15 +23,15 @@ License: You must have a valid license purchased only from themeforest(the above
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 
 		<!--begin::Web font -->
-		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
-		<script>
+		{{-- <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script> --}}
+		{{-- <script>
 			WebFont.load({
             google: {"families":["Poppins:300,400,500,600,700","Roboto:300,400,500,600,700"]},
             active: function() {
                 sessionStorage.fonts = true;
             }
-          });
-        </script>
+          }); --}}
+        {{-- </script> --}}
 		<link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 		<base href="/public">
 
@@ -46,6 +46,8 @@ License: You must have a valid license purchased only from themeforest(the above
 
 		{{-- RTL version: --}}
 		<link href="assets/demo/default/base/style.bundle.rtl.css" rel="stylesheet" type="text/css" />
+	
+		<link rel="stylesheet" href="{{ asset('assets/font/font.css') }}">
 
 		<!--end::Global Theme Styles -->
 
@@ -77,7 +79,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!-- end::Head -->
 
 	<!-- begin::Body -->
-	<body style="direction: rtl" class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
+	<body  style="direction: rtl; font-family:B Nazanin" class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
 
 		<!-- begin:: Page -->
 		<div class="m-grid m-grid--hor m-grid--root m-page">
