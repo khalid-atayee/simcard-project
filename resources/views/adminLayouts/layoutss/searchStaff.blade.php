@@ -107,7 +107,11 @@
                 <th scope="col">رتبه</th>
                 
                 <th scope="col">وظیفه</th>
+                @can('staff-info')
+                    
                 <th scope="col">عمل</th>
+                @endcan
+
               </tr>
             </thead>
             <tbody>

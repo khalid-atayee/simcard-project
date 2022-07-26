@@ -10,8 +10,14 @@
     
 @endforeach --}}
 
-<form id="userForm" method="POST" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" enctype="multipart/form-data">
-    {{ csrf_field() }}
+{{-- <br> --}}
+<button style="" onclick="backtoMain('{{ route('user.backToUser') }}','get','main-container')" class="btn btn-secondary m-btn m-btn--icon m-btn--wide">
+    <span>
+        <i class="fa fa-history"></i>
+        <span style="color: black">بازگشت</span>
+    </span>
+</button>
+<form id="userform" class="userForm m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" method="POST" enctype="multipart/form-data">
     <div class="m-portlet__body">
         <div class="form-group m-form__group row">
             <label class="col-lg-2 col-form-label">*اسم:</label>
@@ -75,13 +81,17 @@
             <div class="row">
                 <div class="col-lg-2"></div>
                 <div class="col-lg-6">
-                    <button type="submit" class="btn btn-success  m-btn m-btn--icon m-btn--wide m-btn--md">ذخیره</button>
-                    <button type="reset" class="btn btn-danger m-btn m-btn--icon m-btn--wide m-btn--md">کنسل</button>
+                    <button type="button" onclick="makeUser('{{ route('user.submitForm') }}','post','userForm')" class="btn btn-success  m-btn m-btn--icon m-btn--wide ">ذخیره</button>
+                    
+                    
                 </div>
             </div>
         </div>
     </div>
+    {{ csrf_field() }}
+
 </form>
+
 
 
 

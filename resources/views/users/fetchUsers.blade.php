@@ -1,5 +1,5 @@
 
-    <button onclick="backtoMain('{{ route('user.backToUser') }}','get')" style="float: left" class="btn btn-secondary m-btn m-btn--icon m-btn--wide">
+    <button onclick="backtoMain('{{ route('user.backToUser') }}','get','main-table')" style="float: left" class="btn btn-secondary m-btn m-btn--icon m-btn--wide">
         <span>
             <i class="fa fa-history"></i>
             <span style="color: black">بازگشت</span>
@@ -41,6 +41,7 @@
 
         <tr>
 
+            <th scope="row">#</th>
             <th scope="row">اسم یوزر</th>
             <th scope="row">رول های که دارد </th>
             <th scope="row">حذف</th>
@@ -55,6 +56,7 @@
         @if ($user->roles)
         @foreach ($user->roles as $user_has_roles )
         <tr>
+            <td>{{ $loop->index+1 }}</td>
             <td>{{ $user->name }}</td>
             <td>{{ $user_has_roles->name }}</td>
             <td><input type="button" class="btn btn-danger m-btn m-btn--icon m-btn--wide" onclick="revokeRole('{{ route('user.revokeRole')}}','delete',{{ $user->id }},{{ $user_has_roles->id }})"   value="حذف" ></td>

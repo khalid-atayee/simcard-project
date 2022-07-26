@@ -35,14 +35,7 @@ class userController extends Controller
     function formSubmit(Request $request)
     {
 
-        //    echo "<pre>"; print_r($request->file('logo'));exit;
-        // if($request->hasFile('logo'))
-        // {
-        //     dd('ok');
-        // }
-
         // dd($request->file('logo'));
-        // echo $request->file('logo');exit;
         $validator = Validator::make(
             $request->all(),
             [
@@ -88,8 +81,8 @@ class userController extends Controller
             }
             $user->save();
             $users = User::all();
-            $html = view('users.data', compact('users'))->render();
-            return response()->json(['status' => true, 'html' => $html, 'message' => 'رکارد موفقانه اضافه گردید'], 200);
+            $html_content = view('users.data', compact('users'))->render();
+            return response()->json(['html_content' => $html_content, 'message' => 'رکارد موفقانه اضافه گردید'], 200);
         }
     }
 
@@ -106,8 +99,12 @@ class userController extends Controller
             return response()->json(['status' => 401, 'errors' => 'رول شما ادمین است'], 401);
         } else {
             $user_image  = $user->image;
-            $path = public_path() . '/userImage/' . $user_image;
-            if (file_exists($path)) {
+            
+
+            $path = public_path() .'/userImage/'.$user_image;
+            
+            // dd($path);
+            if (file_exists($path) && $user_image!=null) {
                 unlink($path);
                 $user->delete();
             } else {
@@ -195,6 +192,13 @@ class userController extends Controller
        $users = User::all();
        return view('users.data',compact('users'));
     }
+
+    function backToUserMain()
+    {
+        dd('ok');
+    }
+    
+    
 }
     
     // |regex:/^([a-zA-Z]+)(\s[a-zA-Z]+)*$/',

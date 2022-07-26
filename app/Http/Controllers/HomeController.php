@@ -18,8 +18,7 @@ use Illuminate\View\ViewName;
 use PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersExport;
-
-
+use App\Models\User;
 
 // use Barryvdh\DomPDF\Facade\Pdf;
 // use Barryvdh\DomPDF\PDF;
@@ -512,15 +511,24 @@ class HomeController extends Controller
                 ->get();
 
             $count = 1;
+           $user_id= auth()->user()->id;
+        //    dd($user_id);
+            $user = User::find($user_id);
             foreach ($datas as $data) {
-
+               
+                if($user->hasPermissionTo('staff-info')){
+                    $btn = '<a href="/info-employee/' . $data->id . '" class="btn btn-info">معلومات</a>';
+                }else{
+                    $btn = '';
+                }
+                
                 $output  .= '<tr>
                     <td>' . $count . '</td>
                     <td>' . $data->name . '</td>
                     <td>' . $data->fatherName . '</td>
                     <td>' . $data->ranks->name . '</td>
                     <td>' . $data->job . '</td>
-                    <td><a href="/info-employee/' . $data->id . '" class="btn btn-info">معلومات</a></td>
+                    <td>'.$btn.'</td>
                     </tr>';
                 $count++;
             }
@@ -529,7 +537,19 @@ class HomeController extends Controller
                 'data' => $output
             ]);
         }
+        
     }
+    // function getinfo_btn()
+    // {
+    //     if(auth()->user()->hasPermissionTo('staff-info'))
+    //     {
+    //         '<td><a href="/info-employee/' . $data->id . '" class="btn btn-info">معلومات</a>.'</td>
+            
+
+    //     }
+
+    // }
+    
     function infoDistribution($id)
     {
         // dd($id);

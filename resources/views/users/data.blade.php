@@ -1,4 +1,4 @@
-<button id="btn-user" class="btn btn-success m-btn m-btn--icon m-btn--wide">
+<button id="btn-user" onclick="backtoMain('{{ route('users.inputFields') }}','get','main-container')" class="btn btn-success m-btn m-btn--icon m-btn--wide">
     <span>
         <i class="fa flaticon-profile-1"></i>
         <span>ایجاد یوزر</span>

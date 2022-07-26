@@ -6,7 +6,7 @@
 
     <div class="m-portlet ">
         <div class="m-portlet__body ">
-            <div class="main-container ">
+            <div class="main-container">
                 @include('users.data')
             </div>
 
@@ -53,78 +53,78 @@
             //     });
             // }
 
-            $(document).on('click', '#btn-user', function() {
+            // $(document).on('click', '#btn-user', function() {
 
 
-                $.ajax({
-                    type: "get",
-                    url: "{{ route('users.inputFields') }}",
+            //     $.ajax({
+            //         type: "get",
+            //         url: "{{ route('users.inputFields') }}",
 
-                    success: function(response) {
-                        // $('.main-container').html('');
-                        // $('.m-container').empty();
-                        $('.main-container').html(response);
-                        // $('.main-container').html(response);
-
-
-                    }
-                });
-
-            });
+            //         success: function(response) {
+            //             // $('.main-container').html('');
+            //             // $('.m-container').empty();
+            //             $('.main-container').html(response);
+            //             // $('.main-container').html(response);
 
 
-            $(document).on('submit', '#userForm', function(e) {
-                e.preventDefault();
-                $.ajax({
-                    type: 'POST',
-                    url: "{{ route('user.submitForm') }}",
-                    data: new FormData(this),
-                    dataType: 'JSON',
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-
-                    beforeSend: function() {
-                        $(document).find('div.error').text('');
-
-
-                    },
-                    success: function(response) {
-
-                        if (response.status == true) {
-                            // console.log(response.html);
-                            // console.log('ok');
-                            // $('.content-container').empty();
-                            // $('.m-container').empty();
-                            // $('.content-type').empty();
-                            // $('#divMain').addClass('centerdiv');
-                            // $('.main-container').empty();
-                            $('.main-container').html(response.html);
-
-                        }
-
-
-
-                        Swal.fire(
-                            'success added',
-                            response.message,
-                            'success'
-                        );
-                        // window.location.reload();
-
-
-                    },
-                    error: function(response) {
-                        // $('.error').html('');
-                        $.each(response.responseJSON.errors, function(key, value) {
-                            $('#error-' + key).text(value);
-                        });
-
-
-                    }
-                });
+            //         }
+            //     });
 
             });
+
+
+            // $(document).on('submit', '#userForm', function(e) {
+            //     e.preventDefault();
+            //     $.ajax({
+            //         type: 'POST',
+            //         url: "{{ route('user.submitForm') }}",
+            //         data: new FormData(this),
+            //         dataType: 'JSON',
+            //         // contentType: false,
+            //         // cache: false,
+            //         // processData: false,
+
+            //         beforeSend: function() {
+            //             $(document).find('div.error').text('');
+
+
+            //         },
+            //         success: function(response) {
+
+            //             if (response.status == true) {
+            //                 // console.log(response.html);
+            //                 // console.log('ok');
+            //                 // $('.content-container').empty();
+            //                 // $('.m-container').empty();
+            //                 // $('.content-type').empty();
+            //                 // $('#divMain').addClass('centerdiv');
+            //                 // $('.main-container').empty();
+            //                 $('.main-container').html(response.html);
+
+            //             }
+
+
+
+            //             Swal.fire(
+            //                 'success added',
+            //                 response.message,
+            //                 'success'
+            //             );
+            //             // window.location.reload();
+
+
+            //         },
+            //         error: function(response) {
+            //             // $('.error').html('');
+            //             $.each(response.responseJSON.errors, function(key, value) {
+            //                 $('#error-' + key).text(value);
+            //             });
+
+
+            //         }
+            //     });
+
+            // });
 
         });
     </script>

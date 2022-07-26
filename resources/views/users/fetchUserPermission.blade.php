@@ -1,4 +1,10 @@
 {{-- <div class="form-group m-form__group form-row"> --}}
+    <button onclick="backtoMain('{{ route('user.backToUser') }}','get','permission-table')" style="float: left" class="btn btn-secondary m-btn m-btn--icon m-btn--wide">
+        <span>
+            <i class="fa fa-history"></i>
+            <span style="color: black">بازگشت</span>
+        </span>
+    </button>
     <form class="form-group m-form__group form-row" id="assignRoleForm">
 
         @csrf
@@ -33,6 +39,7 @@
 
         <tr>
 
+            <th scope="row">#</th>
             <th scope="row">اسم یوزر</th>
             <th scope="row">صلاحیت های که دارد </th>
             <th scope="row">حذف</th>
@@ -47,6 +54,7 @@
         @if ($user->permissions)
         @foreach ($user->permissions as $user_has_permission )
         <tr>
+            <td>{{ $loop->index+1 }}</td>
             <td>{{ $user->name }}</td>
             <td>{{ $user_has_permission->name }}</td>
             <td><input type="button" onclick="revokePermissionUser('{{ route('user.revokePermission')}}','delete','{{ $user->id }}','{{ $user_has_permission->id }}')" class="btn btn-danger m-btn m-btn--icon m-btn--wide"    value="حذف" ></td>

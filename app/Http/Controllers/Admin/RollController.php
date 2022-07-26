@@ -12,22 +12,24 @@ class RollController extends Controller
 {
     function index()
     {
+
+        $roles = Role::all();
        
-        return view('roles.index');
+        return view('roles.index',compact('roles'));
     }
 
-    function getData()
-    {
-        $roles = Role::all();
-        return response()->json([
-            'status'=>200,
-            'roles'=>$roles
-        ]);
-    }
+    // function getData()
+    // {
+    //     $roles = Role::all();
+    //     return response()->json([
+    //         'status'=>200,
+    //         'roles'=>$roles
+    //     ]);
+    // }
     function create(Request $request)
     {
         //echo "<pre>"; print_r($_POST);exit;
-
+        // dd($request->all());
         $validator = Validator::make(
             $request->all(),
             [
@@ -42,35 +44,34 @@ class RollController extends Controller
             return response()->json([
                 'status'=>400,
                 'error'=>$validator->errors()
-            ]);
+            ],400);
         }
+        
         if(!isset($request->hidden_id))
         {
+           
             $roles = new Role;
             $roles->name = $request->rolename;
             $roles->save();
-            return response()->json([
-                'status'=>200,
-                'message'=>'رول موفقانه ثبت گردید'
-            ]);
-
+            $roles = Role::all();
+            $html_view = view('roles.rolesTable',compact('roles'))->render();
+            return response()->json(['html_view'=>$html_view,'message'=>'رول موفقانه اضافه گردید'],200);
 
         }
-        else {
-            $roles_id = $request->hidden_id;
+        else 
+        {
+            
+            $role_id = $request->hidden_id;
             $role_name = $request->rolename; 
 
-            $roles = Role::find($roles_id);
-            $roles->name = $role_name;
-            $roles->update();
+            $role = Role::find($role_id);
+            $role->name = $role_name;
+            $role->update();
+            $roles = Role::all();
+            $html_view = view('roles.rolesTable',compact('roles'))->render();
+            return response()->json(['html_view'=>$html_view,'message'=>'رول موفقانه ویرایش گردید'],200);
            
-
-            return response()->json([
-                'status'=>200,
-                'message'=>'رول موفقانه اپدیت شد'
-            ]);
         }
-        
         
         
     }
@@ -79,22 +80,19 @@ class RollController extends Controller
     {
         $roles  = Role::find($id);
         $roles->delete();
-        return response()->json([
-            'status'=>200,
-            'message'=>'رول موفقانه حذف گردید'
-        ]);
+        $roles  = Role::all();
+        return view('roles.rolesTable',compact('roles'));
     }
     
     function update($id)
     {
-        $roles = Role::find($id);
+        $role = Role::find($id);
         return response()->json([
-            'status'=>200,
-            'roles'=>$roles
-        ]);
+            'role'=>$role
+        ],200);
     }
 
-    function assignPermission($id)
+    function roleInfo($id)
     {
         $permissions = Permission::all();
         $role = Role::find($id);
@@ -113,11 +111,16 @@ class RollController extends Controller
 
         if($role->hasPermissionTo($permission_name))
         {
-            return response()->json(['message'=>'صلاحیت در رول موجود است']);
+            return response()->json(['error'=>'صلاحیت در رول موجود است'],409);
 
         }
         $role->givePermissionTo($permission_name);
-        return response()->json(['message'=>'صلاحیت اضافه گردید']); 
+        $permissions = Permission::all();
+        $html_view = view('roles.assignPermissionView',compact('role','permissions'))->render();
+        return response()->json(['html_view'=>$html_view,'message'=>'صلاحیت اضافه گردید'],200);
+           
+
+        // return response()->json(['message'=>'']); 
         
 
 
@@ -133,7 +136,7 @@ class RollController extends Controller
 
     }
 
-    function revokePermission(Request $request)
+    function removePermission(Request $request)
     {
         $role_id = $request->role_id;
         $permission_id = $request->permission_id;
@@ -143,9 +146,25 @@ class RollController extends Controller
         $role = Role::find($role_id);
         $permission = Permission::find($permission_id);
         $role->revokePermissionTo($permission);
-        return response()->json(['status'=>200,'message'=>'رکارد موفقانه حذف گردید']);
+
+        $permissions = Permission::all();
+        // $role = Role::find($id);
+       
+
+        $html_view = view('roles.assignPermissionView',compact('permissions','role'))->render();
+        return response()->json(['html_view'=>$html_view,'message'=>'رکارد موفقانه حذف گردید'],200);
 
     }
+
+    function backToRole()
+    {
+        $roles  = Role::all();
+        return view('roles.rolesTable',compact('roles'));
+
+
+    }
+
+
 
     
 }

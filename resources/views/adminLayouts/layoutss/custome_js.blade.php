@@ -24,7 +24,158 @@
 
     }
 
+    function createRole(url,method,dev)
+    {
+        var data = $('#'+dev).serialize();
 
+
+        $.ajax({
+            type: method,
+            url: url,
+            data:data,
+            dataType:'json',
+            success: function (response) {
+                $('.role-container').html(response.html_view);
+                Swal.fire
+                        (
+                            'Good job!',
+                            response.message,
+                            'success'
+                        )
+  
+            },
+            error: function(response)
+            {
+                $('#error-role').html('');
+                    if(response.status==400)
+                    {
+                        $.each(response.responseJSON.error, function (key, value) { 
+                        $('#error-role').html(value);
+
+                        });
+
+                    }
+
+            }
+        });
+
+    }
+    function deleteRole(url,method)
+    {
+        $.ajax({
+            type: method,
+            url: url,
+            success: function (response) {
+                $('.role-main-container').html(response);
+                
+            }
+        });
+    }
+
+    function roleUpdate(url,method)
+    {
+        $.ajax({
+            type: method,
+            url: url,
+            success: function (response) {
+                $('#rolename').val(response.role.name);
+                $('#hidden-id').val(response.role.id);
+            }
+        });
+
+    }
+
+    function roleInfo(url,method)
+    {
+        $.ajax({
+            type:method,
+            url: url,
+
+            success: function (response) {
+                $('.role-main-container').html(response);
+                
+            }
+        });
+    }
+
+    function deletePermission(url, method,role_id,role_permission_id)
+    {
+
+        var data = {
+            'role_id':role_id,
+            'permission_id':role_permission_id,
+        }
+        console.log(data);
+        
+        $.ajax({
+            type:method ,
+            url: url,
+            data: data,
+            dataType: 'json',
+            success: function (response) {
+                $('.role-main-container').html(response.html_view);
+
+
+
+                
+            }
+        });
+    }
+
+
+    function createRole(url,method,form_id)
+    {
+
+        var data = $('#'+form_id).serialize();
+        // console.log(data);
+        $.ajax({
+            type:method,
+            url: url,
+            data: data,
+            dataType: "json",
+            success: function (response) {
+                $('.role-main-container').html(response.html_view);
+                Swal.fire
+                        (
+                            'Good job!',
+                            response.message,
+                            'success'
+                        )
+                
+            },
+            error: function (response)
+            {
+                Swal.fire
+                        (
+                            'Good job!',
+                            response.responseJSON.error,
+                            'success'
+                        )
+                $('#permission_select').val('');
+
+
+            }
+
+        });
+    }
+
+    function backtoMain(url,method,dev)
+    {
+        // alert('ok');
+
+        $.ajax({
+            type: method,
+            url:url,
+          
+            success: function (response) {
+                $('.'+dev).html(response);
+                
+            }
+        });
+
+    }
+
+// ------------------------------------------------------------------------------------>
     function deleteUser(url, method) {
         // var data  = $('#userDelete').val();
 
@@ -187,18 +338,40 @@
         });
     }
 
-    function backtoMain(url,method)
+    function makeUser(url,method,formDev)
     {
+        // var data =  $('.'+formDev).serialize();
+        var data = new FormData($('.'+formDev)[0]);
+        // console.log(data);
         $.ajax({
             type: method,
-            url:url,
-          
+            url: url,
+            data: data,
+            dataType: "json",
+            contentType: false,
+            cache: false,
+            processData: false,
+            beforeSend: function() {
+                $(document).find('div.error').text('');
+
+
+            },
             success: function (response) {
-                $('.main-container').html(response);
+                $('.main-container').html(response.html_content);
                 
+            },
+            error: function(response){
+                $.each(response.responseJSON.errors, function (key, value) { 
+                    $('#error-'+key).html(value);
+                     
+                });
             }
         });
 
     }
+
+   
+
+    
     
 </script>
