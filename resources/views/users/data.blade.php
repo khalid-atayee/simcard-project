@@ -1,3 +1,6 @@
+@can('create-users')
+    
+
 <button id="btn-user" onclick="backtoMain('{{ route('users.inputFields') }}','get','main-container')" class="btn btn-success m-btn m-btn--icon m-btn--wide">
     <span>
         <i class="fa flaticon-profile-1"></i>
@@ -7,6 +10,7 @@
 
 
 <br>
+@endcan
 <table id="main-table" class="table table-bordered m-table">
     <thead>
 
@@ -16,8 +20,11 @@
             <th scope="row">اسم</th>
             <th scope="row">ایمیل</th>
             <th scope="row">رول</th>
-            <th scope="row">صلاحیت</th>
+            <th scope="row " >صلاحیت</th>
+            @can('remove-user')
+                
             <th scope="row">حذف</th>
+            @endcan
 
 
         </tr>
@@ -38,14 +45,17 @@
                 </td>
                 <td>
                     <button type="button" onclick="assignPermissionToUser('{{ route('user.assignPermissionToUser',$user->id) }}','get')"  id="userPermission"
-                        class="btn btn-primary  m-btn m-btn--icon m-btn--wide">صلاحیت</button>
+                        class="btn btn-primary  m-btn m-btn--icon m-btn--wide" disabled>صلاحیت</button>
                 </td>
-
+                @can('remove-user')
+                    
+                
                 <td>
                     <button type="button" onclick="deleteUser('{{ route('user.delete', $user->id) }}','delete')"
                         id="userDelete" class="btn btn-danger m-btn m-btn--icon m-btn--wide">حذف</button>
-
-                </td>
+                        
+                    </td>
+                    @endcan
             </tr>
         @endforeach
 

@@ -70,12 +70,15 @@
 
 
     {{-- search bar start here --}}
-
+@can('unit-search')
+    
     <div class="input-group">
         <input type="search" width="100px" id="search_content_unit" class="form-control rounded"
             placeholder="لطفا قطعه مورد نظر تان را اینجا جستجو نماید..." />
         <button type="button" id="search_btn_unit" class="rounded-0 btn btn-outline-primary">جستجو</button>
     </div>
+    @endcan
+
 
     {{-- search bar end here --}}
 
@@ -83,12 +86,16 @@
     <div class="card text-center">
         <div class="card-header">
 
-            <ul class="nav nav-pills card-header-pills float-right">
-                <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="modal" data-bs-target="#unitModal">ایجاد قطعه جدید </a>
-                </li>
+            @can('unit-create')
+                    
+                <ul class="nav nav-pills card-header-pills float-right">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="modal" data-bs-target="#unitModal">ایجاد قطعه جدید </a>
+                    </li>
 
-            </ul>
+                </ul>
+            @endcan
+
             <h5 class="p-3 float-end">مدیریت قطعات</h5>
         </div>
 
@@ -101,14 +108,21 @@
                     <tr>
                         <th scope="col">آیدی</th>
                         <th scope="col">نام</th>
-                        @role('admin|dataEntryManager')
+                        @can('unit-update')
+                            
                             <th scope="col">آپدیت</th>
+                        @endcan
+                        
+                        @can('unit-delete')
+                            
                             <th scope="col">حذف</th>
-                            @endrole
+                        @endcan
+
                         
                     </tr>
                 </thead>
                 <tbody>
+
 
 
                 </tbody>
@@ -141,16 +155,17 @@
                             $('tbody').append('<tr><td>' +
                                 item.id +
                                 '</td><td>' +
-                                item.name + '</td>' +
-                                @role('admin|dataEntryManager')
-
-
-                                    '<td><button type="button" value="' + item.id +
-                                        '" class="updatBtn btn btn-info">Update</button></td>' +
+                                item.name + '@can("unit-update")</td>' +
+                                '<td><button type="button" value="' + item.id +
+                                        '" class="updatBtn btn btn-info">Update</button></td>@endcan'+
+                             
                                 
-                                '<td><button "type="button" value="' + item.id +
-                                '" class="deleteBtn btn btn-danger" >Delete</button></td>'@endrole +
+
+                                
+                                '<td>@can("unit-delete")<button "type="button" value="' + item.id +
+                                '" class="deleteBtn btn btn-danger" >Delete</button></td>@endcan' +
                                 '</tr>'
+                              
 
 
 
@@ -409,12 +424,12 @@
                                     item.id +
                                     '</td><td>' +
                                     item.name +
-                                    '</td><td><button type="button" value="' + item
+                                    '</td>@can("unit-update")<td><button type="button" value="' + item
                                     .id +
-                                    '" class="updatBtn btn btn-info">Update</button>' +
-                                    '</td><td><button "type="button" value="' + item
+                                    '" class="updatBtn btn btn-info">Update</button>@endcan' +
+                                    '</td>@can("unit-delete")<td><button "type="button" value="' + item
                                     .id +
-                                    '" class="deleteBtn btn btn-danger" >Delete</button></td></tr>'
+                                    '" class="deleteBtn btn btn-danger" >Delete</button></td>@endcan</tr>'
                                     );
 
                             });

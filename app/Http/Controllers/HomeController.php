@@ -27,6 +27,15 @@ use App\Models\User;
 
 class HomeController extends Controller
 {
+    function dashboard()
+    {
+        $simcards = DB::table('sims')
+       ->join('companies','companies.id','=','sims.company_id')
+       ->select(DB::raw('COUNT(*) as totalSim'),'companies.sim_type as company_name' )
+       ->groupBy('sims.company_id')->get();
+    //    dd($simcards);
+       return view('adminLayouts.dashboard',compact('simcards'));
+    }
     function rank()
     {
         return view('adminLayouts.layoutss.rank');

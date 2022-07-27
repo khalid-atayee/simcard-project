@@ -3,7 +3,7 @@
         <div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
             <div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
                 <span class="m-footer__copyright">
-                    2017 &copy; Metronic theme by <a href="https://keenthemes.com" class="m-link">Keenthemes</a>
+                    2022 &copy; All rights reserved to MOI <a href="https://moi.gov.af" class="m-link">MOI</a>
                 </span>
             </div>
             <div class="m-stack__item m-stack__item--right m-stack__item--middle m-stack__item--first">
@@ -15,15 +15,15 @@
                     </li>
                     <li class="m-nav__item">
                         <a href="#" class="m-nav__link">
-                            <span class="m-nav__link-text">Privacy</span>
+                            <span class="m-nav__link-text">Our Service</span>
                         </a>
                     </li>
                     <li class="m-nav__item">
-                        <a href="#" class="m-nav__link">
-                            <span class="m-nav__link-text">T&C</span>
+                        <a href="https://moi.gov.af" class="m-nav__link">
+                            <span class="m-nav__link-text">MOI</span>
                         </a>
                     </li>
-                    <li class="m-nav__item">
+                    {{-- <li class="m-nav__item">
                         <a href="#" class="m-nav__link">
                             <span class="m-nav__link-text">Purchase</span>
                         </a>
@@ -32,7 +32,7 @@
                         <a href="#" class="m-nav__link" data-toggle="m-tooltip" title="Support Center" data-placement="left">
                             <i class="m-nav__link-icon flaticon-info m--icon-font-size-lg3"></i>
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>

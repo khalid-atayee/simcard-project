@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -17,8 +18,12 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
+        $simcards = DB::table('sims')
+       ->join('companies','companies.id','=','sims.company_id')
+       ->select(DB::raw('COUNT(*) as totalSim'),'companies.sim_type as company_name' )
+       ->groupBy('company_id');
         
-        return view('adminLayouts.login');
+        return view('adminLayouts.login','simcards');
     }
 
     /**

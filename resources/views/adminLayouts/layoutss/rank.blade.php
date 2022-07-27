@@ -104,10 +104,15 @@
                     <tr>
                         <th scope="col">آیدی</th>
                         <th scope="col">نام</th>
-                        @role('admin|dataEntryManager')
+                        @can('rank-update')
+                            
                             <th scope="col">آپدیت</th>
+                        @endcan
+                        @can('unit-delete')
+                            
+                        
                             <th scope="col">حذف</th>
-                        @endrole
+                        @endcan
                     </tr>
                 </thead>
                 <tbody>
@@ -144,15 +149,15 @@
                                 item.id +
                                 '</td><td>' +
                                 item.name + '</td>' +
-                                @role('admin|dataEntryManager')
+                               
 
 
-                                    '<td><button type="button" value="' + item.id +
+                                    '@can("rank-update")<td><button type="button" value="' + item.id +
                                         '" class="updatBtn btn btn-info">Update</button>' +
-                                        '</td><td><button "type="button" value="' + item
+                                        '@endcan</td>@can("rank-delete") <td><button "type="button" value="' + item
                                         .id +
-                                        '" class="deleteBtn btn btn-danger" >Delete</button></td>'
-                                @endrole + '</tr>'
+                                        '" class="deleteBtn btn btn-danger" >Delete</button></td>@endcan'
+                                 + '</tr>'
 
 
                             );
@@ -400,12 +405,12 @@
                                     item.id +
                                     '</td><td>' +
                                     item.name +
-                                    '</td><td><button type="button" value="' + item
+                                    '</td>@can("rank-update")<td><button type="button" value="' + item
                                     .id +
                                     '" class="updatBtn btn btn-info">Update</button>' +
-                                    '</td><td><button "type="button" value="' + item
+                                    '</td>@endcan @can("rank-delete")<td><button "type="button" value="' + item
                                     .id +
-                                    '" class="deleteBtn btn btn-danger" >Delete</button></td></tr>'
+                                    '" class="deleteBtn btn btn-danger" >Delete</button></td>@endcan</tr>'
                                     );
 
                             });

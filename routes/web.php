@@ -27,11 +27,11 @@ Route::get('/', function () {
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
 
-        Route::get('/dashboard', function () {
-                return view('adminLayouts.app');
-        });
+        // Route::get('/dashboard', function () {
+        //         return view('adminLayouts.dashboard');
+        // });
 
-
+        Route::get('/dashboard',[homeController::class,'dashboard'])->name('dashboard.name');
         // rank routes start here
         Route::get('/rank', [HomeController::class, 'rank'])->name('rank.data');
         Route::post('rank_insert', 'App\Http\Controllers\HomeController@rankAdd');
@@ -49,7 +49,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/unit_delete/{id?}', [HomeController::class, 'delete'])->name('unit.delete');
         Route::get('/unit_update/{id?}', [HomeController::class, 'update'])->name('unit.update');
         Route::put('/unit_updating/{id?}', [HomeController::class, 'updating'])->name('unit.updating');
-        Route::post('search-unit', [HomeController::class, 'searchUnit'])->name('unit.search');
+        Route::post('search-unit', [HomeController::class, 'searchUnit'])->name('unit.search')->middleware(['permission:unit-search']);
         // unit routes end here
 
         // distribution routes start here
@@ -88,21 +88,21 @@ Route::middleware(['auth'])->group(function () {
 
         // report routes start here
 
-        Route::middleware(['role:admin|dataEntryManager'])->group(function ()
-        {
+        // Route::middleware(['role:admin|dataEntryManager'])->group(function ()
+        // {
 
-                Route::get('/report-unit', [HomeController::class, 'reportUnit'])->name('report.unit');
+                Route::get('/report-unit', [HomeController::class, 'reportUnit'])->name('report.unit')->middleware('permission:report-view');
                 Route::post('search-sim', [HomeController::class, 'searchSim'])->name('searchSim.submit');
                 Route::get('report-pdf/{id?}', [HomeController::class, 'reportPdf'])->name('report.pdf');
                 Route::get('/report-excel', [HomeController::class, 'export'])->name('data.excel');
-        });
+        // });
         // Route::get('/report-excel',[HomeController::class,'']);
 
 
         // Role  start here
-        Route::middleware(['role:admin'])->group(function () {
+        // Route::middleware(['role:admin'])->group(function () {
 
-                Route::get('/role', [RollController::class, 'index'])->name('role.index');
+                Route::get('/role', [RollController::class, 'index'])->name('role.index')->middleware('permission:roles-view');
                 // Route::get('/getData',[RollController::class,'getData'])->name('role.getData');
                 Route::post('/role_create', [RollController::class, 'create'])->name('role.create');
                 Route::delete('/role_delete/{id?}', [RollController::class, 'delete'])->name('role.delete');
@@ -121,7 +121,7 @@ Route::middleware(['auth'])->group(function () {
 
                 // Permission start here
 
-                Route::get('/permission', [PermissionController::class, 'permissionIndex'])->name('permission.index');
+                Route::get('/permission', [PermissionController::class, 'permissionIndex'])->name('permission.index')->middleware('permission:permissions-view');
                 Route::get('/permission_getData', [PermissionController::class, 'retrieve'])->name('permission.retrieve');
                 Route::post('/permission_create', [PermissionController::class, 'create'])->name('permission.create');
                 Route::delete('/permission_delete/{id?}', [PermissionController::class, 'delete'])->name('permission.delete');
@@ -134,7 +134,7 @@ Route::middleware(['auth'])->group(function () {
 
 
                 // user.index
-                Route::get('/users', [userController::class, 'userIndex'])->name('user.index');
+                Route::get('/users', [userController::class, 'userIndex'])->name('user.index')->middleware('permission:users-view');
                 Route::get('/retrieve', [userController::class, 'retrieve'])->name('user.retrieve');
                 Route::get('/getUserFrom', [userController::class, 'userform'])->name('users.inputFields');
                 Route::post('/userSubmit', [userController::class, 'formSubmit'])->name('user.submitForm');
@@ -146,7 +146,7 @@ Route::middleware(['auth'])->group(function () {
                 Route::post('/usergivePermissionTo/{id?}', [userController::class, 'givePermissionToUser'])->name('user.givePermissionTo');
                 Route::delete('/revokePermission', [userController::class, 'revokePermission'])->name('user.revokePermission');
                 Route::get('/backToMain', [userController::class, 'backToMain'])->name('user.backToUser');
-        });
+        // });
 
         // Route::get('/backToMain',[userController::class,'backToUserMain'])->name('user.backToUserMain');
 
@@ -155,6 +155,9 @@ Route::middleware(['auth'])->group(function () {
         // Route::get('/backToMainPermission',[userController::class,'backToPermission'])->name('user.backToPermission');
 
         // User routes end here
+
+        // user profile routes
+        Route::get('/userProfile',[userController::class,'profile'])->name('users.userProfile');
 
 
 });
