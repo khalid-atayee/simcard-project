@@ -1,5 +1,6 @@
 <?php
 return [
+    'sign in to admin'       =>     'Sign in to admin',
     "dashboard"              =>     "Dashboard",
     "simcard-management"     =>     "Simcards Management",
     "search-staff"           =>     "Search Staff",
@@ -8,20 +9,10 @@ return [
     "rank-managemnt"         =>     "Rank Management",
     "reports"                =>     "Reports",
     "unit-reports"           =>     "Unit Reports",
-    "user-management"        =>     "User Management",
+    "user-management"        =>     "Users Management",
+    "users-management"       =>     "User Management",
     "roles"                  =>     "Roles",
     "permissions"            =>     "Permissions",
-];
-
-
-
-
-
-
-
-
-
-
-
+]
 
 ?>

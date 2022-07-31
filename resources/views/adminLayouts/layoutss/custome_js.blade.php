@@ -24,9 +24,14 @@
 
     }
 
-    function createRole(url,method,dev)
+    $('#form-role').submit(function(event){
+        event.preventDefault();
+    });
+
+    function createRole(url,method,formDev,errorDev,assignDev)
     {
-        var data = $('#'+dev).serialize();
+      
+        var data = $('#'+formDev).serialize();
 
 
         $.ajax({
@@ -34,14 +39,23 @@
             url: url,
             data:data,
             dataType:'json',
+            // cache:false,
+            // processData:false,
+            // contentType:false,
             success: function (response) {
-                $('.role-container').html(response.html_view);
-                Swal.fire
-                        (
-                            'Good job!',
-                            response.message,
-                            'success'
-                        )
+                if(response.status==200)
+                {
+
+                    
+                    $('.'+assignDev).html(response.html_view);
+                    Swal.fire
+                            (
+                                'Good job!',
+                                response.message,
+                                'success'
+                            )
+                }
+            
   
             },
             error: function(response)
@@ -50,9 +64,10 @@
                     if(response.status==400)
                     {
                         $.each(response.responseJSON.error, function (key, value) { 
-                        $('#error-role').html(value);
+                        $('#'+errorDev).html(value);
 
                         });
+                        // $('#error-role').html(response.responseJSON.error);
 
                     }
 
@@ -60,26 +75,26 @@
         });
 
     }
-    function deleteRole(url,method)
+    function deleteRole(url,method,devContent)
     {
         $.ajax({
             type: method,
             url: url,
             success: function (response) {
-                $('.role-main-container').html(response);
+                $('.'+devContent).html(response);
                 
             }
         });
     }
 
-    function roleUpdate(url,method)
+    function roleUpdate(url,method,nameDev,hidden_idDev)
     {
         $.ajax({
             type: method,
             url: url,
             success: function (response) {
-                $('#rolename').val(response.role.name);
-                $('#hidden-id').val(response.role.id);
+                $('#'+nameDev).val(response.values.name);
+                $('#'+hidden_idDev).val(response.values.id);
             }
         });
 
@@ -123,7 +138,7 @@
     }
 
 
-    function createRole(url,method,form_id)
+    function createRole_override_mistakenly(url,method,form_id)
     {
 
         var data = $('#'+form_id).serialize();
@@ -368,6 +383,46 @@
             }
         });
 
+    }
+
+
+    // ajax pagination 
+    $(document).ready(function () {
+        $(document).on('click','.pagination a', function (e) {
+            e.preventDefault();
+            // alert('you clicked pagination');
+            var page = $(this).attr('href').split('page=')[1];
+            $('#page_num').val(page);
+            console.log(page);
+            getPagination(page);
+
+            
+            
+        });
+    });
+
+
+
+    function getPagination(page)
+    {
+        var data = {
+            'hidden_value':$('#hidden_value').val(),
+            'page_num':$('#page_num').val(),
+         }
+        $.ajax({
+            type: "get",
+            url: "{{ route('records.pagination') }}"+"?page="+ page,
+            data:data,
+
+            success: function (response) {
+
+                $('.permission-main-container').html(response);
+                // $('tr #count_num').html(page);
+
+
+                
+            }
+        });
     }
 
    

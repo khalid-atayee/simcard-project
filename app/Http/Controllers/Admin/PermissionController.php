@@ -11,8 +11,23 @@ class PermissionController extends Controller
 {
     function permissionIndex()
     {
+        $count=1;
+       $permissions = Permission::paginate(5);
+        return view('permissions.index',compact('permissions','count'));
+    }
+
+    function pagintionRecords(Request $request)
+    {
+        if($request->ajax()){
        
-        return view('permissions.index');
+            $page = $request->page_num;       
+            $pagination_record_count=5;
+            
+            $permissions = Permission::paginate($pagination_record_count);
+            $count=$pagination_record_count*$page-$pagination_record_count+1;
+
+            return view('permissions.permissionContent',compact('permissions','count'))->render();
+        }
     }
 
 
@@ -46,7 +61,7 @@ class PermissionController extends Controller
             return response()->json([
                 'status'=>400,
                 'error'=>$validator->errors()
-            ]);
+            ],400);
         }
 
         $hidden_id = $request->hidden_id;
@@ -56,10 +71,13 @@ class PermissionController extends Controller
             $permission = new Permission;
             $permission->name=$request->permissionName;
             $permission->save();
+            $permissions = Permission::all();
+            $html_view = view('permissions.permissionContent',compact('permissions'))->render();
             return response()->json([
                 'status'=>200,
+                'html_view'=>$html_view,
                 'message'=>'صلاحیت موفقانه اضافه گردید'
-            ]);
+            ],200);
             
         }
         else
@@ -67,7 +85,9 @@ class PermissionController extends Controller
             $permission = Permission::find($hidden_id);
             $permission->name = $request->permissionName;
             $permission->update();
-            return response()->json(['status'=>200, 'message'=>'صلاحیت موفقانه ویرایش شد']);
+            $permissions = Permission::all();
+            $html_view = view('permissions.permissionContent',compact('permissions'))->render();
+            return response()->json(['status'=>200, 'message'=>'صلاحیت موفقانه ویرایش شد'],200);
             
         }
 
@@ -79,13 +99,16 @@ class PermissionController extends Controller
     {
         $permission = Permission::find($id);
         $permission->delete();
-        return response()->json(['status'=>200,'message'=>'صلاحیت موفقانه حذف گردید']);
+        $permissions = Permission::all();
+        return view('permissions.permissionContent',compact('permissions'));
+        
+        
     }
 
     function update($id)
     {
         $permission = Permission::find($id);
-        return response()->json(['status'=>200,'permission'=>$permission]);
+        return response()->json(['status'=>200,'values'=>$permission]);
     }
 
 }

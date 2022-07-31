@@ -3,7 +3,7 @@
 @section('content')
     <div class="m-portlet">
         
-        <div class="role-main-container  m-portlet__body">
+        <div class="role-main-container m-portlet__body">
             @include('roles.rolesTable');
             
         </div>

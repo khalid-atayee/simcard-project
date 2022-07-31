@@ -12,7 +12,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 Renew Support: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
 License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
 -->
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 	<!-- begin::Head -->
 	<head>
@@ -98,6 +98,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
                 @extends('adminLayouts.aside')
+
 
 				<!-- END: Left Aside -->
 				<div class="m-grid__item m-grid__item--fluid m-wrapper">

@@ -55,7 +55,7 @@ class RollController extends Controller
             $roles->save();
             $roles = Role::all();
             $html_view = view('roles.rolesTable',compact('roles'))->render();
-            return response()->json(['html_view'=>$html_view,'message'=>'رول موفقانه اضافه گردید'],200);
+            return response()->json(['status'=>200,'html_view'=>$html_view,'message'=>'رول موفقانه اضافه گردید'],200);
 
         }
         else 
@@ -69,7 +69,7 @@ class RollController extends Controller
             $role->update();
             $roles = Role::all();
             $html_view = view('roles.rolesTable',compact('roles'))->render();
-            return response()->json(['html_view'=>$html_view,'message'=>'رول موفقانه ویرایش گردید'],200);
+            return response()->json(['status'=>200,'html_view'=>$html_view,'message'=>'رول موفقانه ویرایش گردید'],200);
            
         }
         
@@ -88,7 +88,7 @@ class RollController extends Controller
     {
         $role = Role::find($id);
         return response()->json([
-            'role'=>$role
+            'values'=>$role
         ],200);
     }
 

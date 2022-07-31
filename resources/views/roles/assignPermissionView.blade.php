@@ -29,7 +29,7 @@
         </div>
 
         <div class="col-lg-4">
-            <input type="button" onclick="createRole('{{ route('role.createPermission') }}','post','assign-permission')" id="assignPermission-btn" style="margin-top: 25px"
+            <input type="button" onclick="createRole_override_mistakenly('{{ route('role.createPermission') }}','post','assign-permission')" id="assignPermission-btn" style="margin-top: 25px"
                 class="form-control btn btn-outline-success btn-block" value="ایجاد صلاحیت">
 
         </div>

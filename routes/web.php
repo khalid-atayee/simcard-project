@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RollController;
 use App\Http\Controllers\Admin\userController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LanguageController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,18 +21,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Auth
+// // Auth
+// Route::get('/{lang?}', function ($lang=null) {
+//         App::setlocale($lang);
+//         return view('adminLayouts.login');
+// });
+
 Route::get('/', function () {
+        
         return view('adminLayouts.login');
 });
-
+// Route::get('locale/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
+Route::get('lang/{locale}',[LanguageController::class,'lang'])->name('language.swicher');
 Auth::routes();
+
 Route::middleware(['auth'])->group(function () {
 
         // Route::get('/dashboard', function () {
         //         return view('adminLayouts.dashboard');
         // });
-
+        
         Route::get('/dashboard',[homeController::class,'dashboard'])->name('dashboard.name');
         // rank routes start here
         Route::get('/rank', [HomeController::class, 'rank'])->name('rank.data');
@@ -100,8 +110,7 @@ Route::middleware(['auth'])->group(function () {
 
 
         // Role  start here
-        // Route::middleware(['role:admin'])->group(function () {
-
+        // Route::middleware(['role:admin'])->group(function () 
                 Route::get('/role', [RollController::class, 'index'])->name('role.index')->middleware('permission:roles-view');
                 // Route::get('/getData',[RollController::class,'getData'])->name('role.getData');
                 Route::post('/role_create', [RollController::class, 'create'])->name('role.create');
@@ -158,6 +167,10 @@ Route::middleware(['auth'])->group(function () {
 
         // user profile routes
         Route::get('/userProfile',[userController::class,'profile'])->name('users.userProfile');
+
+
+        // pagination route
+        Route::get('/recordsPagination',[PermissionController::class,'pagintionRecords'])->name('records.pagination');
 
 
 });

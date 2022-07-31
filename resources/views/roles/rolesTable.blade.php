@@ -1,5 +1,3 @@
-<div class="role-container">
-
 
     <form id="form-role" class="form-group m-form__group form-row mx-3">
         @csrf
@@ -14,7 +12,7 @@
         </div>
 
         <div class="col-lg-3">
-            <input type="button" id="submit-btn" onclick="createRole('{{ route('role.create') }}','post','form-role')"
+            <input type="button" id="submit-btn" onclick="createRole('{{ route('role.create') }}','post','form-role','error-role','role-main-container')"
                 style="margin-top: 25px" class="form-control btn btn-outline-success btn-block"
                 value="رول خویش را تایین نماید">
         </div>
@@ -48,12 +46,12 @@
                         <td>{{ $loop->index + 1 }}</td>
                         <td>{{ $role->name }}</td>
                         <td>
-                            <input type="button" onclick="deleteRole('{{ route('role.delete', $role->id) }}','delete')"
+                            <input type="button" onclick="deleteRole('{{ route('role.delete', $role->id) }}','delete','role-main-container')"
                                 class="btn btn-danger  m-btn--md m--margin-right-10" value="حذف">
 
                         </td>
                         <td>
-                            <input type="button" onclick="roleUpdate('{{ route('role.update', $role->id) }}','get')"
+                            <input type="button" onclick="roleUpdate('{{ route('role.update', $role->id) }}','get','rolename','hidden-id')"
                                 class="btn btn-primary  m-btn--md m--margin-right-10" value="ویرایش">
 
                         </td>
@@ -75,5 +73,3 @@
 
     {{-- </div> --}}
 
-
-</div>

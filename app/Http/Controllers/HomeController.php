@@ -27,6 +27,11 @@ use App\Models\User;
 
 class HomeController extends Controller
 {
+
+    
+    public function languageDemo(){
+        return view('languageDemo');
+    }
     function dashboard()
     {
         $simcards = DB::table('sims')
@@ -524,6 +529,7 @@ class HomeController extends Controller
         //    dd($user_id);
             $user = User::find($user_id);
             foreach ($datas as $data) {
+                // Auth::user()->can();
                
                 if($user->hasPermissionTo('staff-info')){
                     $btn = '<a href="/info-employee/' . $data->id . '" class="btn btn-info">معلومات</a>';
