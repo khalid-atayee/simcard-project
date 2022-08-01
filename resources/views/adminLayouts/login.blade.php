@@ -60,6 +60,11 @@ License: You must have a valid license purchased only from themeforest(the above
 
 		<!-- begin:: Page -->
 		
+	
+
+
+		{{-- -----login start --}}
+		
 		<div class="m-grid m-grid--hor m-grid--root m-page">
 			<div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--signin m-login--2 m-login-2--skin-2" id="m_login" style="background-image: url(../../../assets/app/media/img//bg/bg-3.jpg);">
 				<div class="m-grid__item m-grid__item--fluid	m-login__wrapper">

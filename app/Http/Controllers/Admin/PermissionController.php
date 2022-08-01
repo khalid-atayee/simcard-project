@@ -106,6 +106,7 @@ class PermissionController extends Controller
         $permission = Permission::find($id);
         $permission->delete();
         $count=1;
+        // return $this->permissionIndex();
         $permissions = Permission::paginate(5);
             // $count=$pagination_record_count*$page-$pagination_record_count+1;
 
