@@ -71,8 +71,11 @@ class PermissionController extends Controller
             $permission = new Permission;
             $permission->name=$request->permissionName;
             $permission->save();
-            $permissions = Permission::all();
-            $html_view = view('permissions.permissionContent',compact('permissions'))->render();
+            // $permissions = Permission::all();
+            $count=1;
+            $permissions = Permission::paginate(5);
+            // return view('permissions.permissionContent',compact('permissions','count'))->render();
+            $html_view = view('permissions.permissionContent',compact('permissions','count'))->render();
             return response()->json([
                 'status'=>200,
                 'html_view'=>$html_view,
@@ -85,9 +88,12 @@ class PermissionController extends Controller
             $permission = Permission::find($hidden_id);
             $permission->name = $request->permissionName;
             $permission->update();
-            $permissions = Permission::all();
-            $html_view = view('permissions.permissionContent',compact('permissions'))->render();
-            return response()->json(['status'=>200, 'message'=>'صلاحیت موفقانه ویرایش شد'],200);
+            // $permissions = Permission::all();
+            $count=1;
+            $permissions = Permission::paginate(5);
+
+            $html_view = view('permissions.permissionContent',compact('permissions','count'))->render();
+            return response()->json(['status'=>200, 'html_view'=>$html_view, 'message'=>'صلاحیت موفقانه ویرایش شد'],200);
             
         }
 
@@ -99,8 +105,13 @@ class PermissionController extends Controller
     {
         $permission = Permission::find($id);
         $permission->delete();
-        $permissions = Permission::all();
-        return view('permissions.permissionContent',compact('permissions'));
+        $count=1;
+        $permissions = Permission::paginate(5);
+            // $count=$pagination_record_count*$page-$pagination_record_count+1;
+
+         return view('permissions.permissionContent',compact('permissions','count'))->render();
+        // $permissions = Permission::all();
+        // return view('permissions.permissionContent',compact('permissions'));
         
         
     }
