@@ -31,8 +31,9 @@ Route::get('/', function () {
         
         return view('adminLayouts.login');
 });
+Route::get('lang/{locale}',[LanguageController::class,'swicherLanguage'])->name('lang');
 // Route::get('locale/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
-Route::get('lang/{locale}',[LanguageController::class,'lang'])->name('language.swicher');
+// Route::get('lang/{locale}',[LanguageController::class,'lang'])->name('language.swicher');
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {

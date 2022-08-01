@@ -73,7 +73,7 @@
 										{{-- @php $locale = session()->get('locale'); @endphp --}}
 
 													<li class="m-nav__item m-nav__item--active">
-														<a href="{{ url('lang/en') }}" class="m-nav__link m-nav__link--active">
+														<a href="{{ route('lang','en') }}" class="m-nav__link m-nav__link--active">
 															{{-- <span class="m-nav__link-icon"><img class="m-topbar__language-img" src="assets/app/media/img/flags/020-flag.svg"></span> --}}
 															<span class="m-nav__link-title m-topbar__language-text m-nav__link-text">
 																English
@@ -83,20 +83,20 @@
 													</li>
 
 													<li class="m-nav__item m-nav__item--active">
-														<a href="{{ url('lang/pa') }}" class="m-nav__link m-nav__link--active">
+														<a href="{{ route('lang','dr') }}" class="m-nav__link m-nav__link--active">
 															{{-- <span class="m-nav__link-icon"><img class="m-topbar__language-img" src="assets/app/media/img/flags/020-flag.svg"></span> --}}
 															<span class="m-nav__link-title m-topbar__language-text m-nav__link-text">
-																Pashto
+																Dari
 																
 															</span>
 														</a>
 													</li>
 
 													<li class="m-nav__item m-nav__item--active">
-														<a href="{{ url('lang/dr') }}" class="m-nav__link m-nav__link--active">
+														<a href="" class="m-nav__link m-nav__link--active">
 															{{-- <span class="m-nav__link-icon"><img class="m-topbar__language-img" src="assets/app/media/img/flags/020-flag.svg"></span> --}}
 															<span class="m-nav__link-title m-topbar__language-text m-nav__link-text">
-																Dari
+																Pashto
 																
 															</span>
 														</a>
